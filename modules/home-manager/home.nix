@@ -78,9 +78,21 @@
     # EDITOR = "emacs";
   };
 
+  home.shellAliases = {
+    gits = "git status -s";
+    gitd = "git diff";
+    gita = "git add";
+    gitc = "git commit";
+    gitca = "git commit --amend";
+  };
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-  programs.git.enable = true;
+  programs.git = {
+    enable = true;
+    userName = "Akhil Wali";
+    userEmail = "akhil.wali.10@gmail.com";
+  };
 
   programs.zsh = {
     enable = true;
