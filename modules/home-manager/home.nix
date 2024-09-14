@@ -97,6 +97,7 @@
 
   home.sessionPath = [ "${config.xdg.configHome}/emacs/bin" ];
 
+  # TODO use .aliases file with .zshrc
   home.shellAliases = {
     gits = "git status -s";
     gitd = "git diff";
@@ -111,12 +112,14 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+  # TODO use .gitconfig from dotfiles, move to .config/git/config
   programs.git = {
     enable = true;
     userName = "Akhil Wali";
     userEmail = "akhil.wali.10@gmail.com";
   };
 
+  # TODO use .zshrm from dotfiles
   programs.zsh = {
     enable = true;
     enableCompletion = true;
