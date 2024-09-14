@@ -25,6 +25,7 @@
    pkgs.emacs
    pkgs.zsh
    pkgs.oh-my-zsh
+   pkgs.starship
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -92,6 +93,21 @@
         "history"
         "sudo"
       ];
+    };
+  };
+
+  programs.starship = {
+    enable = true;
+    settings = {
+      add_newline = false;
+      format = "$character";
+      right_format = "$all";
+      continuation_prompt = "... ";
+
+      character = {
+        success_symbol = "[➜](bold green)";
+        error_symbol = "[➜](bold red)";
+      };
     };
   };
 }
