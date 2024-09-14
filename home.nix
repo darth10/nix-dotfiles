@@ -27,6 +27,7 @@
    pkgs.oh-my-zsh
    pkgs.starship
    pkgs.atuin
+   pkgs.htop
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -121,6 +122,13 @@
       enter_accept = false;
       inline_height = 15;
       style = "compact";
+    };
+  };
+
+  programs.htop = {
+    enable = true;
+    settings = {
+      color_scheme = 1;
     };
   };
 }
