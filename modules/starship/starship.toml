@@ -1,0 +1,28 @@
+add_newline = false
+format = """$character"""
+right_format = """$all"""
+continuation_prompt = '... '
+
+[character]
+success_symbol = "[ ->](bold green)"
+error_symbol = "[ ->](bold red)"
+
+[time]
+disabled = false
+format = '[\[ $time \]]($style) '
+time_format = "%T"
+
+[git_status]
+style = "bold yellow"
+
+[git_state]
+style = "bold yellow"
+
+[git_branch]
+style = "bold blue"
+
+[package]
+disabled = true
+
+[hostname]
+ssh_symbol = '🛰️ '

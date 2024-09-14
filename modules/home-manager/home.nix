@@ -68,6 +68,7 @@
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
+    ".config/starship.toml".source = ~/projects/dotfiles/modules/starship/starship.toml;
   };
 
   # Home Manager can also manage your environment variables through
@@ -130,17 +131,6 @@
 
   programs.starship = {
     enable = true;
-    settings = {
-      add_newline = false;
-      format = "$character";
-      right_format = "$all";
-      continuation_prompt = "... ";
-
-      character = {
-        success_symbol = "[➜](bold green)";
-        error_symbol = "[➜](bold red)";
-      };
-    };
   };
 
   programs.atuin = {
