@@ -26,6 +26,7 @@
    pkgs.zsh
    pkgs.oh-my-zsh
    pkgs.starship
+   pkgs.atuin
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -108,6 +109,18 @@
         success_symbol = "[➜](bold green)";
         error_symbol = "[➜](bold red)";
       };
+    };
+  };
+
+  programs.atuin = {
+    enable = true;
+    enableZshIntegration = true;
+    flags = ["--disable-up-arrow"];
+
+    settings = {
+      enter_accept = false;
+      inline_height = 15;
+      style = "compact";
     };
   };
 }
