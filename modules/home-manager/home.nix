@@ -21,23 +21,23 @@
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
-   pkgs.emacs
-   pkgs.delta
-   pkgs.zsh
-   pkgs.oh-my-zsh
-   pkgs.starship
-   pkgs.atuin
-   pkgs.htop
+    pkgs.emacs
+    pkgs.delta
+    pkgs.zsh
+    pkgs.oh-my-zsh
+    pkgs.starship
+    pkgs.atuin
+    pkgs.htop
 
-   pkgs.fd
-   (pkgs.ripgrep.override {withPCRE2 = true;})
+    pkgs.fd
+    (pkgs.ripgrep.override {withPCRE2 = true;})
 
-   pkgs.emacs-all-the-icons-fonts
-   pkgs.fontconfig
-   (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
+    pkgs.emacs-all-the-icons-fonts
+    pkgs.fontconfig
+    (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
 
-   pkgs.nixfmt-classic
-   pkgs.nil
+    pkgs.nixfmt-classic
+    pkgs.nil
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -133,9 +133,7 @@
     };
   };
 
-  programs.starship = {
-    enable = true;
-  };
+  programs.starship.enable = true;
 
   programs.atuin = {
     enable = true;
