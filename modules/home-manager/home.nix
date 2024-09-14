@@ -21,13 +21,23 @@
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
-
    pkgs.emacs
+   pkgs.delta
    pkgs.zsh
    pkgs.oh-my-zsh
    pkgs.starship
    pkgs.atuin
    pkgs.htop
+
+   pkgs.fd
+   (pkgs.ripgrep.override {withPCRE2 = true;})
+
+   pkgs.emacs-all-the-icons-fonts
+   pkgs.fontconfig
+   (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
+
+   pkgs.nixfmt-classic
+   pkgs.nil
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -42,6 +52,8 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
   ];
+
+  fonts.fontconfig.enable = true;
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
@@ -74,9 +86,15 @@
   #
   #  /etc/profiles/per-user/darth10/etc/profile.d/hm-session-vars.sh
   #
+  # Sessions vars and path require logout for correct activation.
   home.sessionVariables = {
     # EDITOR = "emacs";
+    DOOMDIR = "${config.xdg.configHome}/doom";
+    EMACSDIR = "${config.xdg.configHome}/emacs";
+    DOOMLOCALDIR = "${config.xdg.dataHome}/doom";
   };
+
+  home.sessionPath = [ "${config.xdg.configHome}/emacs/bin" ];
 
   home.shellAliases = {
     gits = "git status -s";
