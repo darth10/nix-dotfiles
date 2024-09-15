@@ -71,6 +71,9 @@
     #   org.gradle.daemon.idletimeout=3600000
     # '';
     ".config/starship.toml".source = ~/projects/dotfiles/modules/starship/starship.toml;
+    ".config/htop/htoprc".text = ''
+        color_scheme=1
+    '';
   };
 
   # Home Manager can also manage your environment variables through
@@ -154,8 +157,5 @@
 
   programs.htop = {
     enable = true;
-    settings = {
-      color_scheme = 1;
-    };
   };
 }
