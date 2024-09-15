@@ -109,6 +109,7 @@
     gita = "git add";
     gitc = "git commit";
     gitca = "git commit --amend";
+    gitl = "git log";
 
     home-manager = "home-manager --impure";
     hr  = "home-manager";
