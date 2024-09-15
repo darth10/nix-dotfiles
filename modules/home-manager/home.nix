@@ -28,6 +28,8 @@
     starship
     atuin
     htop
+    rlwrap
+    tree
 
     fd
     (ripgrep.override {withPCRE2 = true;})
