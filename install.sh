@@ -10,4 +10,9 @@ ln -s $PWD/modules/home-manager $HOME/.config/home-manager
 ln -s $PWD/modules/emacs $HOME/.config/emacs
 ln -s $PWD/modules/doom $HOME/.config/doom
 
+if [ -e /etc/NIXOS ]; then
+    sudo rm /etc/nixos/configuration.nix
+    sudo ln -s $PWD/modules/nixos/configuration.nix /etc/nixos/configuration.nix
+fi
+
 nix run home-manager/release-24.05 -- init --impure --switch $PWD/modules/home-manager
