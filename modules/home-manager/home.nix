@@ -112,7 +112,7 @@
 
     home-manager = "home-manager --impure";
     hr  = "home-manager";
-    hrs = "home-manager switch";
+    hrs = "home-manager switch -b backup";
   };
 
   # Let Home Manager install and manage itself.
