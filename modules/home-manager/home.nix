@@ -17,27 +17,27 @@
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = [
+  home.packages = with pkgs; [
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
-    pkgs.emacs
-    pkgs.delta
-    pkgs.zsh
-    pkgs.oh-my-zsh
-    pkgs.starship
-    pkgs.atuin
-    pkgs.htop
+    emacs
+    delta
+    zsh
+    oh-my-zsh
+    starship
+    atuin
+    htop
 
-    pkgs.fd
-    (pkgs.ripgrep.override {withPCRE2 = true;})
+    fd
+    (ripgrep.override {withPCRE2 = true;})
 
-    pkgs.emacs-all-the-icons-fonts
-    pkgs.fontconfig
-    (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
+    emacs-all-the-icons-fonts
+    fontconfig
+    (nerdfonts.override { fonts = [ "FiraCode" ]; })
 
-    pkgs.nixfmt-classic
-    pkgs.nil
+    nixfmt-classic
+    nil
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
