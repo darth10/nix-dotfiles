@@ -86,6 +86,7 @@
     packages = with pkgs; [
       screenfetch
       git
+      kitty
     ];
     shell = pkgs.zsh;
   };

@@ -71,6 +71,7 @@
     #   org.gradle.daemon.idletimeout=3600000
     # '';
     ".config/starship.toml".source = ~/projects/dotfiles/modules/starship/starship.toml;
+    ".config/kitty".source = ~/projects/dotfiles/modules/kitty;
     ".config/htop/htoprc".text = ''
         color_scheme=1
     '';
