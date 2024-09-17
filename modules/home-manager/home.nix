@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -77,6 +77,12 @@
         color_scheme=1
     '';
   };
+
+  home.activation.installDoomEmacs = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    if [[ ! -d ${config.xdg.configHome}/emacs/ ]]; then
+      ${pkgs.git}/bin/git clone https://github.com/doomemacs/doomemacs.git ${config.xdg.configHome}/emacs/
+    fi
+  '';
 
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. These will be explicitly sourced when using a
