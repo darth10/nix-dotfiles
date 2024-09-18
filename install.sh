@@ -15,4 +15,4 @@ if [ -e /etc/NIXOS ]; then
     sudo ln -s $PWD /etc/nixos
 fi
 
-nix run home-manager/release-24.05 -- init --impure --switch $PWD/modules/home-manager
+nix run home-manager/release-24.05 -- init --switch $PWD/modules/home-manager

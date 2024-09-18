@@ -71,8 +71,8 @@
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
-    ".config/starship.toml".source = ~/projects/dotfiles/modules/starship/starship.toml;
-    ".config/kitty".source = ~/projects/dotfiles/modules/kitty;
+    ".config/starship.toml".source = ../starship/starship.toml;
+    ".config/kitty".source = ../kitty;
     ".config/htop/htoprc".text = ''
         color_scheme=1
     '';
@@ -119,7 +119,6 @@
     gitca = "git commit --amend";
     gitl = "git log";
 
-    home-manager = "home-manager --impure";
     hr  = "home-manager";
     hrs = "home-manager switch -b backup";
   };
