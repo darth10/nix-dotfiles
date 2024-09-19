@@ -98,6 +98,7 @@
       screenfetch
       git
       kitty
+      nvd
     ];
     shell = pkgs.zsh;
   };
