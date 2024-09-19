@@ -119,8 +119,23 @@
     gitca = "git commit --amend";
     gitl = "git log";
 
+    nr = "nixos-rebuild";
+    nrb = "nixos-rebuild build";
+    nrs = "sudo nixos-rebuild switch";
+    nrbd = ''
+       nixos-rebuild build &&
+       nix store diff-closures $(ls -d /nix/var/nix/profiles/* | tail -1) ./result &&
+       rm ./result;
+    '';
+
     hr  = "home-manager";
+    hrb = "home-manager build";
     hrs = "home-manager switch -b backup";
+    hrbd = ''
+      home-manager build &&
+      nix store diff-closures $(home-manager generations | head -n 1 | cut -d' ' -f 7 | tac) ./result &&
+      rm ./result;
+    '';
   };
 
   # Let Home Manager install and manage itself.
