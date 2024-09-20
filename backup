@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+git bundle create ./nix-dotfiles.bundle master
+mv nix-dotfiles.bundle ~/Cloud/code/
