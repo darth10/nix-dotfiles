@@ -100,6 +100,7 @@
       screenfetch
       aspell
       vlc
+      veracrypt
 
       # Games
       openra
