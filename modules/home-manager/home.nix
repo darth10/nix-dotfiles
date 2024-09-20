@@ -23,6 +23,8 @@
     # pkgs.hello
     nano
     emacs
+    gnupg
+    git
     delta
     zsh
     oh-my-zsh
