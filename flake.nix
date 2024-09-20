@@ -9,6 +9,11 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, nixpkgs_22_11, home-manager, ... }@inputs:
@@ -43,6 +48,7 @@
 
         modules = [
           ./modules/home-manager/home.nix
+          inputs.nix-index-database.hmModules.nix-index
         ];
       };
 
