@@ -24,6 +24,7 @@
     nano
     emacs
     gnupg
+    pass
     git
     delta
     zsh
