@@ -75,6 +75,7 @@
     #   org.gradle.daemon.idletimeout=3600000
     # '';
     ".config/starship.toml".source = ../starship/starship.toml;
+    ".ssh/config".source = ../ssh/config;
     ".config/kitty".source = ../kitty;
     ".config/htop/htoprc".text = ''
         color_scheme=1
