@@ -101,6 +101,7 @@
       aspell
       vlc
       veracrypt
+      google-chrome
 
       # Games
       openra
