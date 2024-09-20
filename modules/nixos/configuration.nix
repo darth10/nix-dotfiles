@@ -100,6 +100,10 @@
       screenfetch
       aspell
       vlc
+
+      # Games
+      openra
+      openttd
     ];
     shell = pkgs.zsh;
   };
