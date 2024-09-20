@@ -20,10 +20,12 @@
   fileSystems."/data" = {
     device = "/dev/disk/by-uuid/F25D-D027";
     fsType = "vfat";
+    options = [ "uid=1000" "gid=100" "dmask=007" "fmask=117" ];
   };
   fileSystems."/windows" = {
     device = "/dev/disk/by-uuid/F2A44BB2A44B785D";
     fsType = "ntfs";
+    options = [ "uid=1000" "gid=100" "dmask=007" "fmask=117" ];
   };
 
   swapDevices = [
