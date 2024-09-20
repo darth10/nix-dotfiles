@@ -24,7 +24,7 @@
           ]);
       };
     in {
-      nixosConfigurations."starf0rge-nix" = nixpkgs.lib.nixosSystem {
+      nixosConfigurations."starf0rge" = nixpkgs.lib.nixosSystem {
         inherit system;
 
         specialArgs = { inherit inputs; inherit pkgs_22_11; };
