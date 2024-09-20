@@ -124,7 +124,7 @@
     nrs = "sudo nixos-rebuild switch";
     nrbd = ''
        nixos-rebuild build &&
-       nix store diff-closures $(ls -d /nix/var/nix/profiles/* | tail -1) ./result &&
+       nix store diff-closures /nix/var/nix/profiles/system ./result &&
        rm ./result;
     '';
 
