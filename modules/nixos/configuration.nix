@@ -94,10 +94,12 @@
     description = "darth10";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      screenfetch
       git
-      kitty
       nvd
+      kitty
+      screenfetch
+      aspell
+      vlc
     ];
     shell = pkgs.zsh;
   };
