@@ -80,6 +80,10 @@
     ".config/htop/htoprc".text = ''
         color_scheme=1
     '';
+    ".config/gtk-3.0/settings.ini".text = ''
+        [Settings]
+        gtk-application-prefer-dark-theme=1
+    '';
   };
 
   home.activation.installDoomEmacs = lib.hm.dag.entryAfter ["writeBoundary"] ''
