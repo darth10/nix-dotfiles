@@ -18,9 +18,9 @@
     fsType = "ext4";
   };
   fileSystems."/data" = {
-    device = "/dev/disk/by-uuid/F25D-D027";
-    fsType = "vfat";
-    options = [ "uid=1000" "gid=100" "dmask=007" "fmask=117" ];
+   device = "/dev/disk/by-uuid/19CBB5E91F23BFE8";
+   fsType = "ntfs";
+   options = [ "uid=1000" "gid=100" "dmask=007" "fmask=117" ];
   };
   fileSystems."/windows" = {
     device = "/dev/disk/by-uuid/F2A44BB2A44B785D";
