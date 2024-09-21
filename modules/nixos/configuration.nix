@@ -92,7 +92,7 @@
   users.users.darth10 = {
     isNormalUser = true;
     description = "darth10";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
     packages = with pkgs; [
       git
       nvd
@@ -129,6 +129,9 @@
     gnomeExtensions.hue-lights
     gnomeExtensions.unite
   ];
+
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
 
   fonts.packages = with pkgs; [
     noto-fonts-emoji
