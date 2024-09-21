@@ -102,6 +102,8 @@
       vlc
       veracrypt
       google-chrome
+      transmission_4
+      transmission_4-gtk
 
       # Games
       openra
