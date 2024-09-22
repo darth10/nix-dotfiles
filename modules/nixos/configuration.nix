@@ -127,6 +127,7 @@
     gnupg
     dig.dnsutils
     tailscale
+    manix
 
     gnomeExtensions.hue-lights
     gnomeExtensions.unite
