@@ -94,7 +94,6 @@
     description = "darth10";
     extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
     packages = with pkgs; [
-      git
       nvd
       kitty
       screenfetch
@@ -126,6 +125,8 @@
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
+    git
+    gnupg
     dig.dnsutils
     tailscale
 
