@@ -99,6 +99,7 @@
       kitty
       screenfetch
       aspell
+      aspellDicts.en
       vlc
       veracrypt
       google-chrome
