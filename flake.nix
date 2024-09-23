@@ -16,17 +16,16 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    flake-utils = {
+      url = "github:numtide/flake-utils";
+      inputs.systems.follows = "systems";
+    };
   };
 
-  outputs = { self, systems, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, systems, nixpkgs, ... }@inputs:
     let
-      lib = nixpkgs.lib // home-manager.lib;
-      pkgsFor = lib.genAttrs (import systems) (system:
-        import nixpkgs {
-          inherit system;
-          config.allowUnfree = true;
-        }
-      );
+      lib = nixpkgs.lib // inputs.home-manager.lib;
     in {
       nixosConfigurations = {
         "starf0rge" = lib.nixosSystem {
@@ -37,10 +36,13 @@
           ];
         };
       };
-
+    } // inputs.flake-utils.lib.eachDefaultSystemPassThrough (system: {
       homeConfigurations = {
-        "darth10@starf0rge" = lib.homeManagerConfiguration {
-          pkgs = pkgsFor.x86_64-linux;
+        "darth10" = lib.homeManagerConfiguration {
+          pkgs = import nixpkgs {
+            inherit system;
+            config.allowUnfree = true;
+          };
           extraSpecialArgs = { inherit inputs; };
 
           modules = [
@@ -49,5 +51,5 @@
           ];
         };
       };
-    };
+    });
 }
