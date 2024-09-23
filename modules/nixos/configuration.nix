@@ -125,6 +125,8 @@
   environment.systemPackages = with pkgs; [
     git
     gnupg
+    fd
+    (ripgrep.override {withPCRE2 = true;})
     dig.dnsutils
     tailscale
     manix
