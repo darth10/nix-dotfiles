@@ -35,6 +35,7 @@
       nixosConfigurations = {
         "starf0rge" = lib.nixosSystem {
           specialArgs = {inherit inputs;};
+
           modules = [
             ./modules/nixos/configuration.nix
             ./modules/nixos/pcloud.nix
@@ -47,11 +48,11 @@
 
       homeConfigurations = {
         "darth10" = lib.homeManagerConfiguration {
+          extraSpecialArgs = {inherit inputs;};
           pkgs = import nixpkgs {
             inherit system;
             config.allowUnfree = true;
           };
-          extraSpecialArgs = {inherit inputs;};
 
           modules = [
             ./modules/home-manager/home.nix
