@@ -2,6 +2,8 @@
   description = "dotfiles";
 
   inputs = {
+    systems.url = "github:nix-systems/default";
+
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs_22_11.url = "github:nixos/nixpkgs/nixos-22.11";
 
@@ -16,16 +18,18 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, systems, nixpkgs, home-manager, ... }@inputs:
     let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
       lib = nixpkgs.lib // home-manager.lib;
+      pkgsFor = lib.genAttrs (import systems) (system:
+        import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+        }
+      );
     in {
       nixosConfigurations = {
         "starf0rge" = lib.nixosSystem {
-          inherit system;
-
           specialArgs = { inherit inputs; };
           modules = [
             ./modules/nixos/configuration.nix
@@ -36,7 +40,7 @@
 
       homeConfigurations = {
         "darth10@starf0rge" = lib.homeManagerConfiguration {
-          inherit pkgs;
+          pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = { inherit inputs; };
 
           modules = [
