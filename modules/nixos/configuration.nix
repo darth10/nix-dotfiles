@@ -1,11 +1,8 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ pkgs, ... }:
-
-{
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+{pkgs, ...}: {
+  nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings.auto-optimise-store = true;
 
   nix.gc = {
@@ -23,7 +20,6 @@
   boot.loader.grub.device = "/dev/sda";
   boot.loader.grub.useOSProber = true;
   boot.loader.systemd-boot.configurationLimit = 10;
-
 
   networking.hostName = "starf0rge"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -92,7 +88,7 @@
   users.users.darth10 = {
     isNormalUser = true;
     description = "darth10";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
+    extraGroups = ["networkmanager" "wheel" "libvirtd"];
     packages = with pkgs; [
       nvd
       kitty
@@ -156,8 +152,8 @@
   # Tailscale
   services.tailscale.enable = true;
   services.resolved.enable = true;
-  networking.nameservers = [ "100.100.100.100" "8.8.8.8" ];
-  networking.search = [ "taild07501.ts.net" ];
+  networking.nameservers = ["100.100.100.100" "8.8.8.8"];
+  networking.search = ["taild07501.ts.net"];
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
@@ -175,5 +171,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
-
 }

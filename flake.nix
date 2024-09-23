@@ -23,27 +23,35 @@
     };
   };
 
-  outputs = { self, systems, nixpkgs, ... }@inputs:
-    let
-      lib = nixpkgs.lib // inputs.home-manager.lib;
-    in {
+  outputs = {
+    self,
+    systems,
+    nixpkgs,
+    ...
+  } @ inputs: let
+    lib = nixpkgs.lib // inputs.home-manager.lib;
+  in
+    {
       nixosConfigurations = {
         "starf0rge" = lib.nixosSystem {
-          specialArgs = { inherit inputs; };
+          specialArgs = {inherit inputs;};
           modules = [
             ./modules/nixos/configuration.nix
             ./modules/nixos/pcloud.nix
           ];
         };
       };
-    } // inputs.flake-utils.lib.eachDefaultSystemPassThrough (system: {
+    }
+    // inputs.flake-utils.lib.eachDefaultSystemPassThrough (system: {
+      formatter.${system} = nixpkgs.legacyPackages.${system}.alejandra;
+
       homeConfigurations = {
         "darth10" = lib.homeManagerConfiguration {
           pkgs = import nixpkgs {
             inherit system;
             config.allowUnfree = true;
           };
-          extraSpecialArgs = { inherit inputs; };
+          extraSpecialArgs = {inherit inputs;};
 
           modules = [
             ./modules/home-manager/home.nix

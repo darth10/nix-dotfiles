@@ -1,6 +1,9 @@
-{ config, pkgs, lib, ... }:
-
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "darth10";
@@ -40,10 +43,9 @@
 
     emacs-all-the-icons-fonts
     fontconfig
-    (nerdfonts.override { fonts = [ "FiraCode" ]; })
-
-    nixfmt-classic
+    (nerdfonts.override {fonts = ["FiraCode"];})
     nil
+    alejandra
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -78,11 +80,11 @@
     ".ssh/config".source = ../ssh/config;
     ".config/kitty".source = ../kitty;
     ".config/htop/htoprc".text = ''
-        color_scheme=1
+      color_scheme=1
     '';
     ".config/gtk-3.0/settings.ini".text = ''
-        [Settings]
-        gtk-application-prefer-dark-theme=1
+      [Settings]
+      gtk-application-prefer-dark-theme=1
     '';
   };
 
@@ -116,7 +118,7 @@
     DOOMLOCALDIR = "${config.xdg.dataHome}/doom";
   };
 
-  home.sessionPath = [ "${config.xdg.configHome}/emacs/bin" ];
+  home.sessionPath = ["${config.xdg.configHome}/emacs/bin"];
 
   # TODO use .aliases file with .zshrc
   home.shellAliases = {
@@ -131,12 +133,12 @@
     nrb = "nixos-rebuild build";
     nrs = "sudo nixos-rebuild switch";
     nrbd = ''
-       nixos-rebuild build &&
-       nix store diff-closures /nix/var/nix/profiles/system ./result &&
-       rm ./result;
+      nixos-rebuild build &&
+      nix store diff-closures /nix/var/nix/profiles/system ./result &&
+      rm ./result;
     '';
 
-    hr  = "home-manager";
+    hr = "home-manager";
     hrb = "home-manager build";
     hrs = "home-manager switch -b backup";
     hrbd = ''
