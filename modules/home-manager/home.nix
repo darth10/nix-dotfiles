@@ -99,7 +99,7 @@ in {
   # Sessions vars and path require logout for correct activation.
   home.sessionVariables = {
     FLAKE = "${homeDirectory}/.nix-dotfiles/";
-    # EDITOR = "emacs";
+    EDITOR = "emacsclient -t -a ''";
     DOOMDIR = "${config.xdg.configHome}/doom";
     EMACSDIR = "${config.xdg.configHome}/emacs";
     DOOMLOCALDIR = "${config.xdg.dataHome}/doom";
