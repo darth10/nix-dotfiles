@@ -3,11 +3,14 @@
   pkgs,
   lib,
   ...
-}: {
+}: let
+  username = "darth10";
+  homeDirectory = "/home/darth10";
+in {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "darth10";
-  home.homeDirectory = "/home/darth10";
+  home.username = username;
+  home.homeDirectory = homeDirectory;
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -27,7 +30,6 @@
     nano
     emacs
     gnupg
-    pass
     git
     delta
     zsh
@@ -96,11 +98,14 @@
   #
   # Sessions vars and path require logout for correct activation.
   home.sessionVariables = {
-    FLAKE = "/home/darth10/.nix-dotfiles/";
+    FLAKE = "${homeDirectory}/.nix-dotfiles/";
     # EDITOR = "emacs";
     DOOMDIR = "${config.xdg.configHome}/doom";
     EMACSDIR = "${config.xdg.configHome}/emacs";
     DOOMLOCALDIR = "${config.xdg.dataHome}/doom";
+
+    PASSWORD_STORE_DIR="${homeDirectory}/Cloud/pass";
+    PASSWORD_STORE_ENABLE_EXTENSIONS="true";
   };
 
   home.sessionPath = ["${config.xdg.configHome}/emacs/bin"];

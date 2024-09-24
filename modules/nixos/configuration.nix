@@ -123,6 +123,11 @@
     gnomeExtensions.hue-lights
     gnomeExtensions.unite
 
+    (pass.withExtensions (ext: with ext; [
+      pass-audit
+    ]))
+    pass
+
     nh
     nvd
   ];
