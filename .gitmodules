@@ -1,3 +1,3 @@
 [submodule "modules/doom"]
 	path = modules/doom
-	url = https://github.com/darth10/doom.d
+	url = git@github.com:darth10/doom.d.git
