@@ -85,7 +85,7 @@
     extraGroups = ["networkmanager" "wheel" "libvirtd"];
     packages = with pkgs; [
       kitty
-      screenfetch
+      neofetch
       aspell
       aspellDicts.en
       vlc
