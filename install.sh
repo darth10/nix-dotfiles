@@ -7,13 +7,10 @@ PWD=$(pwd)
 # nix profile install nixpkgs#git --extra-experimental-features 'nix-command flakes' --priority 7
 # git clone ~/Downloads/dotfiles-nix.bundle ~/.nix-dotfiles -b master --recursive
 
-ln -s $PWD $HOME/.config/home-manager
 ln -s $PWD/modules/nix $HOME/.config/nix # TODO remove this module
 ln -s $PWD/modules/doom $HOME/.config/doom
 
-pushd $HOME/.config/home-manager
 nix run --extra-experimental-features 'nix-command flakes' home-manager/release-24.05 -- init --switch .
-popd
 
 if [ -e /etc/NIXOS ]; then
     # Make sure changes to `hardware-configuration.nix` are staged or committed:

@@ -21,9 +21,9 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    # pkgs.hello
+    nh
+    nvd
+
     nano
     emacs
     gnupg
@@ -47,12 +47,6 @@
     nil
     alejandra
 
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
     # # environment:
@@ -66,16 +60,6 @@
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
-
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
     ".config/starship.toml".source = ../starship/starship.toml;
     ".ssh/config".source = ../ssh/config;
     ".config/kitty".source = ../kitty;
@@ -112,6 +96,7 @@
   #
   # Sessions vars and path require logout for correct activation.
   home.sessionVariables = {
+    FLAKE = "/home/darth10/.nix-dotfiles/";
     # EDITOR = "emacs";
     DOOMDIR = "${config.xdg.configHome}/doom";
     EMACSDIR = "${config.xdg.configHome}/emacs";
@@ -129,23 +114,14 @@
     gitca = "git commit --amend";
     gitl = "git log";
 
-    nr = "nixos-rebuild";
-    nrb = "nixos-rebuild build";
-    nrs = "sudo nixos-rebuild switch";
-    nrbd = ''
-      nixos-rebuild build &&
-      nix store diff-closures /nix/var/nix/profiles/system ./result &&
-      rm ./result;
-    '';
+    nho  = "nh os";
+    nhob = "nh os build";
+    nhos = "nh os switch --ask";
 
-    hr = "home-manager";
-    hrb = "home-manager build";
-    hrs = "home-manager switch -b backup";
-    hrbd = ''
-      home-manager build &&
-      nix store diff-closures $(home-manager generations | head -n 1 | cut -d' ' -f 7 | tac) ./result &&
-      rm ./result;
-    '';
+    nhh  = "nh home";
+    nhhb = "nh home build";
+    nhhs = "nh home switch -b backup --ask";
+    nhhg = "echo 'generation:' $(home-manager generations | head -n 1 | cut -d' ' -f 5,6,7)";
   };
 
   # Let Home Manager install and manage itself.

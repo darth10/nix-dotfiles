@@ -5,12 +5,6 @@
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings.auto-optimise-store = true;
 
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 1w";
-  };
-
   imports = [
     ./hardware-configuration.nix
   ];
@@ -90,7 +84,6 @@
     description = "darth10";
     extraGroups = ["networkmanager" "wheel" "libvirtd"];
     packages = with pkgs; [
-      nvd
       kitty
       screenfetch
       aspell
@@ -129,7 +122,16 @@
 
     gnomeExtensions.hue-lights
     gnomeExtensions.unite
+
+    nh
+    nvd
   ];
+
+  programs.nh = {
+    enable = true;
+    clean.enable = true;
+    clean.extraArgs = "--keep-since 5d --keep 5";
+  };
 
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
