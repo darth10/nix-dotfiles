@@ -130,6 +130,8 @@
 
     nh
     nvd
+
+    virtiofsd
   ];
 
   programs.nh = {
