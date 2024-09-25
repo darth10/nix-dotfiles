@@ -75,8 +75,13 @@ in {
   };
 
   home.activation.installDoomEmacs = lib.hm.dag.entryAfter ["writeBoundary"] ''
-    if [[ ! -d ${config.xdg.configHome}/emacs/ ]]; then
+    if [[ ! -d ${config.xdg.configHome}/emacs ]]; then
+      echo "Cloning Doom Emacs"
       ${pkgs.git}/bin/git clone https://github.com/doomemacs/doomemacs.git ${config.xdg.configHome}/emacs/
+    fi
+    if [[ ! -d ${config.xdg.configHome}/doom ]]; then
+      echo "Linking Doom Emacs configuration"
+      ln -s ${homeDirectory + "/.nix-dotfiles/modules/doom"} ${config.xdg.configHome}/doom
     fi
   '';
 

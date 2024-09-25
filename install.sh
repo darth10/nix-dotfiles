@@ -8,7 +8,6 @@ PWD=$(pwd)
 # git clone ~/Downloads/dotfiles-nix.bundle ~/.nix-dotfiles -b master --recursive
 
 ln -s $PWD/modules/nix $HOME/.config/nix # TODO remove this module
-ln -s $PWD/modules/doom $HOME/.config/doom
 
 nix run --extra-experimental-features 'nix-command flakes' home-manager/release-24.05 -- init --switch .
 
