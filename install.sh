@@ -4,10 +4,8 @@ set -xeuo pipefail
 PWD=$(pwd)
 
 # For README:
-# nix profile install nixpkgs#git --extra-experimental-features 'nix-command flakes' --priority 7
+# nix shell nixpkgs#git --extra-experimental-features 'nix-command flakes'
 # git clone ~/Downloads/dotfiles-nix.bundle ~/.nix-dotfiles -b master --recursive
-
-ln -s $PWD/modules/nix $HOME/.config/nix # TODO remove this module
 
 nix run --extra-experimental-features 'nix-command flakes' home-manager/release-24.05 -- init --switch .
 
