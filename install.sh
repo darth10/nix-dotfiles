@@ -4,8 +4,10 @@ set -xeuo pipefail
 PWD=$(pwd)
 
 # For README:
-# nix shell nixpkgs#git --extra-experimental-features 'nix-command flakes'
-# git clone ~/Downloads/dotfiles-nix.bundle ~/.nix-dotfiles -b master --recursive
+# - install https://github.com/DeterminateSystems/nix-installer
+#   curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+# - nix shell nixpkgs#git --extra-experimental-features 'nix-command flakes'
+# - git clone ~/Downloads/dotfiles-nix.bundle ~/.nix-dotfiles -b master --recursive
 
 nix run --extra-experimental-features 'nix-command flakes' home-manager/release-24.05 -- init --switch .
 
