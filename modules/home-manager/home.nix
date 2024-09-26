@@ -134,8 +134,9 @@ in {
     nhos = "nh os switch --ask";
 
     nhh  = "nh home";
-    nhhb = "nh home build";
-    nhhs = "nh home switch -b backup --ask";
+    nhhc = ''echo "$(nix eval --impure --raw --expr builtins.currentSystem).darth10"'';
+    nhhb = "nh home build -c $(nhhc)";
+    nhhs = "nh home switch -b backup --ask -c $(nhhc)";
     nhhg = "echo 'generation:' $(home-manager generations | head -n 1 | cut -d' ' -f 5,6,7)";
   };
 

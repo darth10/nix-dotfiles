@@ -2,10 +2,9 @@
   description = "dotfiles";
 
   inputs = {
-    systems.url = "github:nix-systems/default";
-
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs_22_11.url = "github:nixos/nixpkgs/nixos-22.11";
+    flake-utils.url = "github:numtide/flake-utils";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -16,49 +15,46 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    flake-utils = {
-      url = "github:numtide/flake-utils";
-      inputs.systems.follows = "systems";
-    };
   };
 
   outputs = {
     self,
-    systems,
     nixpkgs,
+    flake-utils,
     ...
   } @ inputs: let
     lib = nixpkgs.lib // inputs.home-manager.lib;
-  in
-    {
-      nixosConfigurations = {
-        "starf0rge" = lib.nixosSystem {
-          specialArgs = {inherit inputs;};
+  in {
+    nixosConfigurations = {
+      "starf0rge" = lib.nixosSystem {
+        specialArgs = {inherit inputs;};
 
-          modules = [
-            ./modules/nixos/configuration.nix
-            ./modules/nixos/pcloud.nix
-          ];
-        };
+        modules = [
+          ./modules/nixos/configuration.nix
+          ./modules/nixos/pcloud.nix
+        ];
       };
-    }
-    // inputs.flake-utils.lib.eachDefaultSystemPassThrough (system: {
-      formatter.${system} = nixpkgs.legacyPackages.${system}.alejandra;
+    };
 
-      homeConfigurations = {
-        "darth10" = lib.homeManagerConfiguration {
-          extraSpecialArgs = {inherit inputs;};
-          pkgs = import nixpkgs {
-            inherit system;
-            config.allowUnfree = true;
-          };
+    formatter = flake-utils.lib.eachDefaultSystemPassThrough (system: {
+      ${system} = nixpkgs.legacyPackages.${system}.alejandra;
+    });
 
-          modules = [
-            ./modules/home-manager/home.nix
-            inputs.nix-index-database.hmModules.nix-index
-          ];
+    # TODO specify the flake in install.sh using:
+    # sys=".#$(nix eval --impure --raw --expr builtins.currentSystem).darth10"
+    homeConfigurations = flake-utils.lib.eachDefaultSystemPassThrough (system: {
+      "${system}.darth10" = lib.homeManagerConfiguration {
+        extraSpecialArgs = {inherit inputs;};
+        pkgs = import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
         };
+
+        modules = [
+          ./modules/home-manager/home.nix
+          inputs.nix-index-database.hmModules.nix-index
+        ];
       };
     });
+  };
 }

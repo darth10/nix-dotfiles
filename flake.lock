@@ -2,9 +2,7 @@
   "nodes": {
     "flake-utils": {
       "inputs": {
-        "systems": [
-          "systems"
-        ]
+        "systems": "systems"
       },
       "locked": {
         "lastModified": 1726560853,
@@ -98,8 +96,7 @@
         "home-manager": "home-manager",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs",
-        "nixpkgs_22_11": "nixpkgs_22_11",
-        "systems": "systems"
+        "nixpkgs_22_11": "nixpkgs_22_11"
       }
     },
     "systems": {
