@@ -6,6 +6,7 @@
 }: let
   username = "darth10";
   homeDirectory = "/home/darth10";
+  dotfilesDirectory = homeDirectory + "/.nix-dotfiles";
 in {
   nix = {
     package = pkgs.nix;
@@ -86,7 +87,7 @@ in {
     fi
     if [[ ! -d ${config.xdg.configHome}/doom ]]; then
       echo "Linking Doom Emacs configuration"
-      ln -s ${homeDirectory + "/.nix-dotfiles/modules/doom"} ${config.xdg.configHome}/doom
+      ln -s ${dotfilesDirectory + "/modules/doom"} ${config.xdg.configHome}/doom
     fi
   '';
 
@@ -108,7 +109,7 @@ in {
   #
   # Sessions vars and path require logout for correct activation.
   home.sessionVariables = {
-    FLAKE = "${homeDirectory}/.nix-dotfiles/";
+    FLAKE = dotfilesDirectory;
     EDITOR = "emacsclient -t -a ''";
     DOOMDIR = "${config.xdg.configHome}/doom";
     EMACSDIR = "${config.xdg.configHome}/emacs";
