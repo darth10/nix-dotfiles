@@ -30,8 +30,8 @@
         specialArgs = {inherit inputs;};
 
         modules = [
-          ./modules/nixos/configuration.nix
-          ./modules/nixos/pcloud.nix
+          ./modules/nixos
+          ./modules/pcloud
         ];
       };
     };
@@ -51,7 +51,7 @@
         };
 
         modules = [
-          ./modules/home-manager/home.nix
+          ./modules/home-manager
           inputs.nix-index-database.hmModules.nix-index
         ];
       };
