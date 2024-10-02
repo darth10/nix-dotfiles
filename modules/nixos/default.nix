@@ -1,34 +1,31 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
 {pkgs, ...}: {
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings.auto-optimise-store = true;
+  nixpkgs.config.allowUnfree = true;
+
+  # Before changing this value read the documentation for this option
+  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  system.stateVersion = "24.05";
 
   imports = [
     ./hardware-configuration.nix
+    ./tailscale.nix
+    ./gnome.nix
+    ./fonts.nix
+    ./keyd.nix
+    ./nh.nix
   ];
 
-  # Bootloader.
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda";
   boot.loader.grub.useOSProber = true;
   boot.loader.systemd-boot.configurationLimit = 10;
 
-  networking.hostName = "starf0rge"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
   networking.networkmanager.enable = true;
+  networking.hostName = "starf0rge";
 
-  # Set your time zone.
   time.timeZone = "Pacific/Auckland";
 
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_NZ.UTF-8";
 
   i18n.extraLocaleSettings = {
@@ -43,23 +40,8 @@
     LC_TIME = "en_NZ.UTF-8";
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "nz";
-    variant = "";
-  };
-
-  # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -69,16 +51,8 @@
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.darth10 = {
     isNormalUser = true;
     description = "darth10";
@@ -104,111 +78,30 @@
     shell = pkgs.zsh;
   };
 
-  programs.zsh.enable = true;
-
-  # Install firefox.
-  programs.firefox.enable = true;
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
     git
     gnupg
     fd
     (ripgrep.override {withPCRE2 = true;})
     dig.dnsutils
-    tailscale
     manix
-    keyd
 
-    gnomeExtensions.hue-lights
-    gnomeExtensions.unite
-    gnomeExtensions.keyboard-modifiers-status
-
-    (pass.withExtensions (ext: with ext; [
-      pass-audit
-    ]))
+    (pass.withExtensions (ext:
+      with ext; [
+        pass-audit
+      ]))
     pass
-
-    nh
-    nvd
 
     virtiofsd
 
     nodejs
   ];
 
-  programs.nh = {
-    enable = true;
-    clean.enable = true;
-    clean.extraArgs = "--keep-since 5d --keep 5";
-  };
-
   virtualisation.libvirtd.enable = true;
-  programs.virt-manager.enable = true;
 
-  fonts.packages = with pkgs; [
-    noto-fonts-emoji
-    vistafonts
-  ];
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Tailscale
-  services.tailscale.enable = true;
-  services.resolved.enable = true;
-  networking.nameservers = ["100.100.100.100" "8.8.8.8"];
-  networking.search = ["taild07501.ts.net"];
-
-  services.keyd = {
-    enable = true;
-    keyboards = {
-      default = {
-        ids = [ "*" ];
-        settings = {
-          main = {
-            shift        = "oneshot(shift)";
-            control      = "oneshot(control)";
-            alt          = "oneshot(alt)";
-            rightcontrol = "oneshot(alt)";
-            rightalt     = "oneshot(control)";
-          };
-        };
-      };
-    };
+  programs = {
+    zsh.enable = true;
+    firefox.enable = true;
+    virt-manager.enable = true;
   };
-  environment.etc."libinput/local-overrides.quirks".text = ''
-    [Serial Keyboards]
-    MatchUdevType=keyboard
-    MatchName=keyd virtual keyboard
-    AttrKeyboardIntegration=internal
-  '';
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.05"; # Did you read the comment?
 }
