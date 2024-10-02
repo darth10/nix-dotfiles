@@ -119,6 +119,7 @@
     dig.dnsutils
     tailscale
     manix
+    keyd
 
     gnomeExtensions.hue-lights
     gnomeExtensions.unite
@@ -163,6 +164,30 @@
   services.resolved.enable = true;
   networking.nameservers = ["100.100.100.100" "8.8.8.8"];
   networking.search = ["taild07501.ts.net"];
+
+  services.keyd = {
+    enable = true;
+    keyboards = {
+      default = {
+        ids = [ "*" ];
+        settings = {
+          main = {
+            shift        = "oneshot(shift)";
+            control      = "oneshot(control)";
+            alt          = "oneshot(alt)";
+            rightcontrol = "oneshot(alt)";
+            rightalt     = "oneshot(control)";
+          };
+        };
+      };
+    };
+  };
+  environment.etc."libinput/local-overrides.quirks".text = ''
+    [Serial Keyboards]
+    MatchUdevType=keyboard
+    MatchName=keyd virtual keyboard
+    AttrKeyboardIntegration=internal
+  '';
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
