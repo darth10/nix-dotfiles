@@ -123,6 +123,7 @@
 
     gnomeExtensions.hue-lights
     gnomeExtensions.unite
+    gnomeExtensions.keyboard-modifiers-status
 
     (pass.withExtensions (ext: with ext; [
       pass-audit
