@@ -73,7 +73,6 @@ in {
 
   # These values are store in ~/.nix-profile/etc/profile.d/hm-session-vars.sh
   # Sessions vars and path require logout for correct activation.
-
   home.sessionVariables = {
     FLAKE = dotfilesDirectory;
     EDITOR = "emacsclient -t -a ''";
@@ -84,6 +83,5 @@ in {
     PASSWORD_STORE_DIR="${homeDirectory}/Cloud/pass";
     PASSWORD_STORE_ENABLE_EXTENSIONS="true";
   };
-
   home.sessionPath = ["${config.xdg.configHome}/emacs/bin"];
 }
