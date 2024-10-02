@@ -94,6 +94,9 @@
       transmission_4
       transmission_4-gtk
 
+      # LSP servers
+      bash-language-server
+
       # Games
       openra
       openttd
@@ -134,6 +137,8 @@
     nvd
 
     virtiofsd
+
+    nodejs
   ];
 
   programs.nh = {
