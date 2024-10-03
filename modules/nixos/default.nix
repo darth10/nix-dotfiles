@@ -85,6 +85,7 @@
     (ripgrep.override {withPCRE2 = true;})
     dig.dnsutils
     manix
+    direnv
 
     (pass.withExtensions (ext:
       with ext; [
