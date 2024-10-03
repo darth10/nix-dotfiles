@@ -44,6 +44,7 @@
           "git"
           "history"
           "sudo"
+          "mise"
         ];
       };
     };

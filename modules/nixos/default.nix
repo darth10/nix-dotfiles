@@ -62,6 +62,7 @@
       neofetch
       aspell
       aspellDicts.en
+      mise
       vlc
       veracrypt
       google-chrome
