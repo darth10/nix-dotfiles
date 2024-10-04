@@ -11,6 +11,10 @@
         settings = {
           main = {
             shift        = "oneshot(shift)";
+            # TODO This currently requires disabling the super key binding in
+            # gnome, using: `gsettings set org.gnome.mutter overlay-key ""`.
+            # This will be handled when dconf config is moved to nix.
+            meta         = "oneshot(meta)";
             control      = "oneshot(control)";
             alt          = "oneshot(alt)";
             rightcontrol = "oneshot(alt)";
