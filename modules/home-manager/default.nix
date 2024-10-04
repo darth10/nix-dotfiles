@@ -5,7 +5,10 @@
   ...
 }: let
   username = "darth10";
-  homeDirectory = "/home/darth10";
+  homeDirectory =
+    if pkgs.stdenv.isDarwin
+    then "/Users/darth10"
+    else "/home/darth10";
   dotfilesDirectory = homeDirectory + "/.nix-dotfiles";
 in {
   nix = {
@@ -79,8 +82,8 @@ in {
     EMACSDIR = "${config.xdg.configHome}/emacs";
     DOOMLOCALDIR = "${config.xdg.dataHome}/doom";
 
-    PASSWORD_STORE_DIR="${homeDirectory}/Cloud/pass";
-    PASSWORD_STORE_ENABLE_EXTENSIONS="true";
+    PASSWORD_STORE_DIR = "${homeDirectory}/Cloud/pass";
+    PASSWORD_STORE_ENABLE_EXTENSIONS = "true";
   };
   home.sessionPath = ["${config.xdg.configHome}/emacs/bin"];
 }
