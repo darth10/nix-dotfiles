@@ -32,7 +32,6 @@ in {
     nvd
 
     nano
-    emacs
     gnupg
     htop
     rlwrap

@@ -59,6 +59,7 @@
     extraGroups = ["networkmanager" "wheel" "libvirtd"];
     packages = with pkgs; [
       kitty
+      emacs
       neofetch
       aspell
       aspellDicts.en
