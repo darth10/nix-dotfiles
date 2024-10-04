@@ -5,13 +5,6 @@ set -euo pipefail
 
 PWD=$(pwd)
 
-# For README:
-# - install https://github.com/DeterminateSystems/nix-installer
-#   curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
-# - Setup ssh-key
-# - nix shell nixpkgs#git --extra-experimental-features 'nix-command flakes'
-# - git clone  --recursive ~/Downloads/dotfiles-nix.bundle ~/.nix-dotfiles -b master
-
 nix run --extra-experimental-features 'nix-command flakes' \
     home-manager/release-24.05 -- -b backup switch --flake .
 
