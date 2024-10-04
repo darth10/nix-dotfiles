@@ -68,6 +68,7 @@
       google-chrome
       transmission_4
       transmission_4-gtk
+      python312Packages.grip
 
       # LSP servers
       bash-language-server
