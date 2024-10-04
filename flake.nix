@@ -40,8 +40,6 @@
       ${system} = nixpkgs.legacyPackages.${system}.alejandra;
     });
 
-    # TODO specify the flake in install.sh using:
-    # sys=".#$(nix eval --impure --raw --expr builtins.currentSystem).darth10"
     homeConfigurations = flake-utils.lib.eachDefaultSystemPassThrough (system: {
       "${system}.darth10" = lib.homeManagerConfiguration {
         extraSpecialArgs = {inherit inputs;};
