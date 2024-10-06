@@ -5,12 +5,12 @@
   ...
 }: let
   username = "darth10";
-  homeDirectory =
+  homeDir =
     if pkgs.stdenv.isDarwin
     then "/Users/darth10"
     else "/home/darth10";
-  dotfilesDirectory = homeDirectory + "/.nix-dotfiles";
-  configHome = config.xdg.configHome;
+  dotfilesDir = homeDir + "/.nix-dotfiles";
+  configDir = config.xdg.configHome;
 in {
   nix = {
     package = pkgs.nix;
@@ -29,7 +29,7 @@ in {
   ];
 
   home.username = username;
-  home.homeDirectory = homeDirectory;
+  home.homeDirectory = homeDir;
 
   home.packages = with pkgs; [
     nh
@@ -49,21 +49,21 @@ in {
 
   home.file = {
     ".ssh/config".source = ../ssh/config;
-    "${configHome}/kitty".source = ../kitty;
-    "${configHome}/htop/htoprc".text = ''
+    "${configDir}/kitty".source = ../kitty;
+    "${configDir}/htop/htoprc".text = ''
       color_scheme=1
     '';
-    "${configHome}/gtk-3.0/settings.ini".text = ''
+    "${configDir}/gtk-3.0/settings.ini".text = ''
       [Settings]
       gtk-application-prefer-dark-theme=1
     '';
-    "${configHome}/doom".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDirectory}/modules/doom";
+    "${configDir}/doom".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/modules/doom";
   };
 
   home.activation.installDoomEmacs = lib.hm.dag.entryAfter ["writeBoundary"] ''
-    if [[ ! -d ${configHome}/emacs ]]; then
+    if [[ ! -d ${configDir}/emacs ]]; then
       echo "Cloning Doom Emacs"
-      ${pkgs.git}/bin/git clone https://github.com/doomemacs/doomemacs.git ${configHome}/emacs/
+      ${pkgs.git}/bin/git clone https://github.com/doomemacs/doomemacs.git ${configDir}/emacs/
     fi
   '';
 
@@ -73,14 +73,14 @@ in {
   # These values are store in ~/.nix-profile/etc/profile.d/hm-session-vars.sh
   # Sessions vars and path require logout for correct activation.
   home.sessionVariables = {
-    FLAKE = dotfilesDirectory;
+    FLAKE = dotfilesDir;
     EDITOR = "emacsclient -t -a ''";
-    DOOMDIR = "${configHome}/doom";
-    EMACSDIR = "${configHome}/emacs";
+    DOOMDIR = "${configDir}/doom";
+    EMACSDIR = "${configDir}/emacs";
     DOOMLOCALDIR = "${config.xdg.dataHome}/doom";
 
-    PASSWORD_STORE_DIR = "${homeDirectory}/Cloud/pass";
+    PASSWORD_STORE_DIR = "${homeDir}/Cloud/pass";
     PASSWORD_STORE_ENABLE_EXTENSIONS = "true";
   };
-  home.sessionPath = ["${configHome}/emacs/bin"];
+  home.sessionPath = ["${configDir}/emacs/bin"];
 }
