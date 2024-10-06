@@ -10,6 +10,7 @@
     then "/Users/darth10"
     else "/home/darth10";
   dotfilesDirectory = homeDirectory + "/.nix-dotfiles";
+  configHome = config.xdg.configHome;
 in {
   nix = {
     package = pkgs.nix;
@@ -47,11 +48,7 @@ in {
     alejandra
   ];
 
-  home.file =
-    let
-      # TODO move to top-level `let`
-      configHome = config.xdg.configHome;
-    in {
+  home.file = {
     ".ssh/config".source = ../ssh/config;
     "${configHome}/kitty".source = ../kitty;
     "${configHome}/htop/htoprc".text = ''
@@ -65,9 +62,9 @@ in {
   };
 
   home.activation.installDoomEmacs = lib.hm.dag.entryAfter ["writeBoundary"] ''
-    if [[ ! -d ${config.xdg.configHome}/emacs ]]; then
+    if [[ ! -d ${configHome}/emacs ]]; then
       echo "Cloning Doom Emacs"
-      ${pkgs.git}/bin/git clone https://github.com/doomemacs/doomemacs.git ${config.xdg.configHome}/emacs/
+      ${pkgs.git}/bin/git clone https://github.com/doomemacs/doomemacs.git ${configHome}/emacs/
     fi
   '';
 
@@ -79,12 +76,12 @@ in {
   home.sessionVariables = {
     FLAKE = dotfilesDirectory;
     EDITOR = "emacsclient -t -a ''";
-    DOOMDIR = "${config.xdg.configHome}/doom";
-    EMACSDIR = "${config.xdg.configHome}/emacs";
+    DOOMDIR = "${configHome}/doom";
+    EMACSDIR = "${configHome}/emacs";
     DOOMLOCALDIR = "${config.xdg.dataHome}/doom";
 
     PASSWORD_STORE_DIR = "${homeDirectory}/Cloud/pass";
     PASSWORD_STORE_ENABLE_EXTENSIONS = "true";
   };
-  home.sessionPath = ["${config.xdg.configHome}/emacs/bin"];
+  home.sessionPath = ["${configHome}/emacs/bin"];
 }
