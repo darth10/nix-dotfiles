@@ -64,6 +64,7 @@
       aspell
       aspellDicts.en
       mise
+      spotify
       vlc
       veracrypt
       google-chrome
