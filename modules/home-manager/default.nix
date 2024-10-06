@@ -47,26 +47,27 @@ in {
     alejandra
   ];
 
-  home.file = {
+  home.file =
+    let
+      # TODO move to top-level `let`
+      configHome = config.xdg.configHome;
+    in {
     ".ssh/config".source = ../ssh/config;
-    ".config/kitty".source = ../kitty;
-    ".config/htop/htoprc".text = ''
+    "${configHome}/kitty".source = ../kitty;
+    "${configHome}/htop/htoprc".text = ''
       color_scheme=1
     '';
-    ".config/gtk-3.0/settings.ini".text = ''
+    "${configHome}/gtk-3.0/settings.ini".text = ''
       [Settings]
       gtk-application-prefer-dark-theme=1
     '';
+    "${configHome}/doom".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDirectory}/modules/doom";
   };
 
   home.activation.installDoomEmacs = lib.hm.dag.entryAfter ["writeBoundary"] ''
     if [[ ! -d ${config.xdg.configHome}/emacs ]]; then
       echo "Cloning Doom Emacs"
       ${pkgs.git}/bin/git clone https://github.com/doomemacs/doomemacs.git ${config.xdg.configHome}/emacs/
-    fi
-    if [[ ! -d ${config.xdg.configHome}/doom ]]; then
-      echo "Linking Doom Emacs configuration"
-      ln -s ${dotfilesDirectory + "/modules/doom"} ${config.xdg.configHome}/doom
     fi
   '';
 
