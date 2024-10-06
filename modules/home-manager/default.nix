@@ -73,5 +73,9 @@ in {
   programs = {
     home-manager.enable = true;
     htop.enable = true;
+    doom-emacs = {
+      inherit dotfilesDir;
+      enable = true;
+    };
   };
 }
