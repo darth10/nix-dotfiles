@@ -3,6 +3,7 @@
     gnomeExtensions.hue-lights
     gnomeExtensions.unite
     gnomeExtensions.keyboard-modifiers-status
+    gnomeExtensions.another-window-session-manager
   ];
 
   services.xserver = {
