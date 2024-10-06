@@ -9,7 +9,7 @@ error_symbol = "[ ->](bold red)"
 
 [time]
 disabled = false
-format = '[\[ $time \]]($style) '
+format = '[\[$time\]]($style)'
 time_format = "%T"
 
 [git_status]
@@ -52,3 +52,6 @@ format = '[$symbol($version )]($style)'
 
 [rust]
 format = '[$symbol($version )]($style)'
+
+[aws]
+format = '[$symbol($profile):$region (\[$duration\] )]($style)'
