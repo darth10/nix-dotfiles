@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  lib,
   ...
 }: let
   username = "darth10";
@@ -17,70 +16,62 @@ in {
     settings.experimental-features = ["nix-command" "flakes"];
   };
 
-  # You should not change this value, even if you update Home Manager. If you do
-  # want to update the value, then make sure to first check the Home Manager
-  # release notes.
-  home.stateVersion = "24.05";
-
   imports = [
     ./git.nix
+    ./emacs.nix
     ./zsh.nix
     ./fonts.nix
   ];
 
-  home.username = username;
-  home.homeDirectory = homeDir;
+  home = {
+    # You should not change this value, even if you update Home Manager. If you do
+    # want to update the value, then make sure to first check the Home Manager
+    # release notes.
+    stateVersion = "24.05";
 
-  home.packages = with pkgs; [
-    nh
-    nvd
+    username = username;
+    homeDirectory = homeDir;
 
-    nano
-    gnupg
-    htop
-    rlwrap
-    tree
+    packages = with pkgs; [
+      nh
+      nvd
 
-    fd
-    (ripgrep.override {withPCRE2 = true;})
+      nano
+      gnupg
+      htop
+      rlwrap
+      tree
 
-    alejandra
-  ];
+      fd
+      (ripgrep.override {withPCRE2 = true;})
 
-  home.file = {
-    ".ssh/config".source = ../ssh/config;
-    "${configDir}/kitty".source = ../kitty;
-    "${configDir}/htop/htoprc".text = ''
-      color_scheme=1
-    '';
-    "${configDir}/gtk-3.0/settings.ini".text = ''
-      [Settings]
-      gtk-application-prefer-dark-theme=1
-    '';
-    "${configDir}/doom".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/modules/doom";
+      alejandra
+    ];
+
+    file = {
+      ".ssh/config".source = ../ssh/config;
+      "${configDir}/kitty".source = ../kitty;
+      "${configDir}/htop/htoprc".text = ''
+        color_scheme=1
+      '';
+      "${configDir}/gtk-3.0/settings.ini".text = ''
+        [Settings]
+        gtk-application-prefer-dark-theme=1
+      '';
+    };
+
+    # These values are store in ~/.nix-profile/etc/profile.d/hm-session-vars.sh
+    # Sessions vars and path require logout for correct activation.
+    sessionVariables = {
+      FLAKE = dotfilesDir;
+
+      PASSWORD_STORE_DIR = "${homeDir}/Cloud/pass";
+      PASSWORD_STORE_ENABLE_EXTENSIONS = "true";
+    };
   };
 
-  home.activation.installDoomEmacs = lib.hm.dag.entryAfter ["writeBoundary"] ''
-    if [[ ! -d ${configDir}/emacs ]]; then
-      echo "Cloning Doom Emacs"
-      ${pkgs.git}/bin/git clone https://github.com/doomemacs/doomemacs.git ${configDir}/emacs/
-    fi
-  '';
-
-  programs.home-manager.enable = true;
-  programs.htop.enable = true;
-
-  # These values are store in ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-  # Sessions vars and path require logout for correct activation.
-  home.sessionVariables = {
-    FLAKE = dotfilesDir;
-    EDITOR = "emacsclient -t -a ''";
-    DOOMDIR = "${configDir}/doom";
-    EMACSDIR = "${configDir}/emacs";
-    DOOMLOCALDIR = "${config.xdg.dataHome}/doom";
-
-    PASSWORD_STORE_DIR = "${homeDir}/Cloud/pass";
-    PASSWORD_STORE_ENABLE_EXTENSIONS = "true";
+  programs = {
+    home-manager.enable = true;
+    htop.enable = true;
   };
-  home.sessionPath = ["${configDir}/emacs/bin"];
 }

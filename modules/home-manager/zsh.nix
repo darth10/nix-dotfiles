@@ -1,33 +1,35 @@
 {pkgs, ...}: {
-  home.packages = with pkgs; [
-    zsh
-    oh-my-zsh
-    starship
-    atuin
-  ];
+  home = {
+    packages = with pkgs; [
+      zsh
+      oh-my-zsh
+      starship
+      atuin
+    ];
 
-  home.file = {
-    ".config/starship.toml".source = ../starship/starship.toml;
-  };
+    file = {
+      ".config/starship.toml".source = ../starship/starship.toml;
+    };
 
-  # TODO import from dotfiles-majaro/.aliases
-  home.shellAliases = {
-    gits = "git status -s";
-    gitd = "git diff";
-    gita = "git add";
-    gitc = "git commit";
-    gitca = "git commit --amend";
-    gitl = "git log";
+    # TODO import from dotfiles-majaro/.aliases
+    shellAliases = {
+      gits = "git status -s";
+      gitd = "git diff";
+      gita = "git add";
+      gitc = "git commit";
+      gitca = "git commit --amend";
+      gitl = "git log";
 
-    nho = "nh os";
-    nhob = "nh os build";
-    nhos = "nh os switch --ask";
+      nho = "nh os";
+      nhob = "nh os build";
+      nhos = "nh os switch --ask";
 
-    nhh = "nh home";
-    nhhc = ''echo "$(nix eval --impure --raw --expr builtins.currentSystem).darth10"'';
-    nhhb = "nh home build -c $(nhhc)";
-    nhhs = "nh home switch -b backup --ask -c $(nhhc)";
-    nhhg = "echo 'generation:' $(home-manager generations | head -n 1 | cut -d' ' -f 5,6,7)";
+      nhh = "nh home";
+      nhhc = ''echo "$(nix eval --impure --raw --expr builtins.currentSystem).darth10"'';
+      nhhb = "nh home build -c $(nhhc)";
+      nhhs = "nh home switch -b backup --ask -c $(nhhc)";
+      nhhg = "echo 'generation:' $(home-manager generations | head -n 1 | cut -d' ' -f 5,6,7)";
+    };
   };
 
   # TODO import/convert .zshrc from dotfiles
