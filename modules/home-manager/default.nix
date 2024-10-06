@@ -44,7 +44,6 @@ in {
     fd
     (ripgrep.override {withPCRE2 = true;})
 
-    nil
     alejandra
   ];
 

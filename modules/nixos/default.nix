@@ -74,6 +74,7 @@
       # LSP servers
       bash-language-server
       clojure-lsp
+      nil
 
       # Games
       openra
