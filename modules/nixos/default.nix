@@ -12,14 +12,13 @@
     ./gnome.nix
     ./fonts.nix
     ./keyd.nix
+    ./virtualisation.nix
     ./nodejs.nix
   ];
 
   time.timeZone = "Pacific/Auckland";
   security.rtkit.enable = true;
   hardware.pulseaudio.enable = false;
-  # TODO move to virtualisation.nix
-  virtualisation.libvirtd.enable = true;
 
   boot = {
     loader = {
@@ -104,9 +103,6 @@
           pass-audit
         ]))
       pass
-
-      # TODO move to virtualisation.nix
-      virtiofsd
     ]
     ++ (import ../../lib/nh.nix {inherit pkgs;});
 
@@ -114,8 +110,6 @@
     zsh.enable = true;
     nodejs.enable = true;
     firefox.enable = true;
-    # TODO move to virtualisation.nix
-    virt-manager.enable = true;
 
     nh = {
       enable = true;
