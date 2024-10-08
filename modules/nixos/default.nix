@@ -6,19 +6,19 @@
   system.stateVersion = "24.05";
 
   imports = [
-    ../nix/settings.nix
+    ../../lib/nix.settings.nix
     ./hardware-configuration.nix
     ./tailscale.nix
     ./gnome.nix
     ./fonts.nix
     ./keyd.nix
-    ./nh.nix
     ./nodejs.nix
   ];
 
   time.timeZone = "Pacific/Auckland";
   security.rtkit.enable = true;
   hardware.pulseaudio.enable = false;
+  # TODO move to virtualisation.nix
   virtualisation.libvirtd.enable = true;
 
   boot = {
@@ -35,6 +35,7 @@
     networkmanager.enable = true;
   };
 
+  # TODO move to i18n.nix
   i18n = {
     defaultLocale = "en_NZ.UTF-8";
 
@@ -55,12 +56,15 @@
     isNormalUser = true;
     description = "darth10";
     extraGroups = ["networkmanager" "wheel" "libvirtd"];
+    # TODO move to environment.systemPackages
     packages = with pkgs; [
       kitty
       emacs
       neofetch
+      # TODO move to emacs.nix << END
       aspell
       aspellDicts.en
+      # END
       mise
       spotify
       vlc
@@ -81,29 +85,43 @@
     shell = pkgs.zsh;
   };
 
-  environment.systemPackages = with pkgs; [
-    git
-    gnupg
-    fd
-    (ripgrep.override {withPCRE2 = true;})
-    dig.dnsutils
-    manix
-    direnv
+  # TODO move to packages.nix
+  environment.systemPackages = with pkgs;
+    [
+      # TODO these aren't needed - duplicated in home-manager << END
+      git
+      gnupg
+      fd
+      (ripgrep.override {withPCRE2 = true;})
+      # END
 
-    (pass.withExtensions (ext:
-      with ext; [
-        pass-audit
-      ]))
-    pass
+      dig.dnsutils
+      manix
+      direnv
 
-    virtiofsd
-  ];
+      (pass.withExtensions (ext:
+        with ext; [
+          pass-audit
+        ]))
+      pass
+
+      # TODO move to virtualisation.nix
+      virtiofsd
+    ]
+    ++ (import ../../lib/nh.nix {inherit pkgs;});
 
   programs = {
     zsh.enable = true;
     nodejs.enable = true;
     firefox.enable = true;
+    # TODO move to virtualisation.nix
     virt-manager.enable = true;
+
+    nh = {
+      enable = true;
+      clean.enable = true;
+      clean.extraArgs = "--keep-since 5d --keep 5";
+    };
   };
 
   services = {

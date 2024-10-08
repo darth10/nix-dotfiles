@@ -15,7 +15,7 @@ in {
   xdg.enable = true;
 
   imports = [
-    ../nix/settings.nix
+    ../../lib/nix.settings.nix
     ./git.nix
     ./emacs.nix
     ./zsh.nix
@@ -31,21 +31,20 @@ in {
     username = username;
     homeDirectory = homeDir;
 
-    packages = with pkgs; [
-      nh
-      nvd
+    packages = with pkgs;
+      [
+        nano
+        gnupg
+        htop
+        rlwrap
+        tree
 
-      nano
-      gnupg
-      htop
-      rlwrap
-      tree
+        fd
+        (ripgrep.override {withPCRE2 = true;})
 
-      fd
-      (ripgrep.override {withPCRE2 = true;})
-
-      alejandra
-    ];
+        alejandra
+      ]
+      ++ (import ../../lib/nh.nix {inherit pkgs;});
 
     file = {
       ".ssh/config".source = ../ssh/config;
@@ -65,7 +64,7 @@ in {
     sessionVariables = {
       FLAKE = dotfilesDir;
 
-      GNUPGHOME="${config.xdg.dataHome}/gnupg";
+      GNUPGHOME = "${config.xdg.dataHome}/gnupg";
       PASSWORD_STORE_DIR = "${homeDir}/Cloud/pass";
       PASSWORD_STORE_ENABLE_EXTENSIONS = "true";
     };
