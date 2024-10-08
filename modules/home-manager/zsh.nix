@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   home = {
     packages = with pkgs; [
       zsh
@@ -37,6 +41,8 @@
     zsh = {
       enable = true;
       enableCompletion = true;
+      dotDir = ".config/zsh";
+      history.path = "${config.xdg.dataHome}/zsh/zsh_history";
 
       oh-my-zsh = {
         enable = true;

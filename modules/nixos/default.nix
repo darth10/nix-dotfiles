@@ -1,8 +1,4 @@
 {pkgs, ...}: {
-  nix = {
-    settings.experimental-features = ["nix-command" "flakes"];
-    settings.auto-optimise-store = true;
-  };
   nixpkgs.config.allowUnfree = true;
 
   # Before changing this value read the documentation for this option
@@ -10,12 +6,14 @@
   system.stateVersion = "24.05";
 
   imports = [
+    ../nix/settings.nix
     ./hardware-configuration.nix
     ./tailscale.nix
     ./gnome.nix
     ./fonts.nix
     ./keyd.nix
     ./nh.nix
+    ./nodejs.nix
   ];
 
   time.timeZone = "Pacific/Auckland";
@@ -70,7 +68,6 @@
       google-chrome
       transmission_4
       transmission_4-gtk
-      python312Packages.grip
 
       # LSP servers
       bash-language-server
@@ -100,12 +97,11 @@
     pass
 
     virtiofsd
-
-    nodejs
   ];
 
   programs = {
     zsh.enable = true;
+    nodejs.enable = true;
     firefox.enable = true;
     virt-manager.enable = true;
   };

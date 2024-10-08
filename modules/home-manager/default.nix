@@ -11,12 +11,11 @@
   dotfilesDir = homeDir + "/.nix-dotfiles";
   configDir = config.xdg.configHome;
 in {
-  nix = {
-    package = pkgs.nix;
-    settings.experimental-features = ["nix-command" "flakes"];
-  };
+  nix.package = pkgs.nix;
+  xdg.enable = true;
 
   imports = [
+    ../nix/settings.nix
     ./git.nix
     ./emacs.nix
     ./zsh.nix
@@ -58,6 +57,7 @@ in {
         [Settings]
         gtk-application-prefer-dark-theme=1
       '';
+      "${configDir}/clojure/deps.edn".source = ../clojure/deps.edn;
     };
 
     # These values are store in ~/.nix-profile/etc/profile.d/hm-session-vars.sh
@@ -65,6 +65,7 @@ in {
     sessionVariables = {
       FLAKE = dotfilesDir;
 
+      GNUPGHOME="${config.xdg.dataHome}/gnupg";
       PASSWORD_STORE_DIR = "${homeDir}/Cloud/pass";
       PASSWORD_STORE_ENABLE_EXTENSIONS = "true";
     };

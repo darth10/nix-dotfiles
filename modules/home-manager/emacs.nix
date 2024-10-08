@@ -27,6 +27,10 @@
         fi
       '';
 
+      packages = with pkgs; [
+        python312Packages.grip
+      ];
+
       # These values are store in ~/.nix-profile/etc/profile.d/hm-session-vars.sh
       # Sessions vars and path require logout for correct activation.
       sessionVariables = {
@@ -34,6 +38,7 @@
         DOOMDIR = "${configDir}/doom";
         EMACSDIR = "${configDir}/emacs";
         DOOMLOCALDIR = "${config.xdg.dataHome}/doom";
+        GRIPHOME="${config.xdg.cacheHome}/grip";
       };
       sessionPath = ["${configDir}/emacs/bin"];
     };
