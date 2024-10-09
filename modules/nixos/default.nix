@@ -78,9 +78,11 @@
       (ripgrep.override {withPCRE2 = true;})
       # END
 
+      unzip
       dig.dnsutils
       manix
       direnv
+      foliate
 
       (pass.withExtensions (ext:
         with ext; [
