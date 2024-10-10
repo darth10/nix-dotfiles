@@ -1,7 +1,0 @@
-{
-  :mvn/local-repo "/home/darth10/.local/share/mvn/"
-
-  :aliases {
-    ;; Add cross-project aliases here
-  }
-}

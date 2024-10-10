@@ -57,7 +57,14 @@ in {
         [Settings]
         gtk-application-prefer-dark-theme=1
       '';
-      "${configDir}/clojure/deps.edn".source = ../clojure/deps.edn;
+      "${configDir}/clojure/deps.edn".text = ''
+        {
+          :mvn/local-repo "${config.xdg.dataHome}/.local/share/mvn/"
+
+          :aliases {
+            ;; Add cross-project aliases here
+          }
+        }'';
     };
 
     # These values are store in ~/.nix-profile/etc/profile.d/hm-session-vars.sh
