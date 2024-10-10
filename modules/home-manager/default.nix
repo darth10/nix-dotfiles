@@ -59,7 +59,7 @@ in {
       '';
       "${configDir}/clojure/deps.edn".text = ''
         {
-          :mvn/local-repo "${config.xdg.dataHome}/.local/share/mvn/"
+          :mvn/local-repo "${config.xdg.dataHome}/mvn/"
 
           :aliases {
             ;; Add cross-project aliases here
