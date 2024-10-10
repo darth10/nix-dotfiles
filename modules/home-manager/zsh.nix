@@ -6,6 +6,7 @@
   home = {
     packages = with pkgs; [
       zsh
+      zsh-vi-mode
       oh-my-zsh
       starship
       atuin
@@ -44,6 +45,11 @@
       dotDir = ".config/zsh";
       history.path = "${config.xdg.dataHome}/zsh/zsh_history";
 
+      initExtra = ''
+        ZVM_INIT_MODE=sourcing
+        source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+      '';
+
       oh-my-zsh = {
         enable = true;
 
@@ -57,6 +63,13 @@
       };
     };
 
+    readline = {
+      enable = true;
+      extraConfig = ''
+        set editing-mode vi
+      '';
+    };
+
     starship.enable = true;
 
     atuin = {
@@ -68,6 +81,7 @@
         enter_accept = false;
         inline_height = 15;
         style = "compact";
+        keymap_mode = "vim-insert";
       };
     };
 

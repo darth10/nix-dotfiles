@@ -30,6 +30,7 @@ in {
 
     username = username;
     homeDirectory = homeDir;
+    preferXdgDirectories = true;
 
     packages = with pkgs;
       [
