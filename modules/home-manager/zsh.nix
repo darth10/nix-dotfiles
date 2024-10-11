@@ -47,7 +47,14 @@
 
       initExtra = ''
         ZVM_INIT_MODE=sourcing
+
         source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+
+        ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BEAM
+        ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BLOCK
+        ZVM_VISUAL_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BLOCK
+        ZVM_VISUAL_LINE_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BLOCK
+        ZVM_OPPEND_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BLOCK
       '';
 
       oh-my-zsh = {
