@@ -39,18 +39,41 @@
     isNormalUser = true;
     description = "darth10";
     extraGroups = ["networkmanager" "wheel"];
-    # TODO move to environment.systemPackages
-    packages = with pkgs; [
-      kitty
+    shell = pkgs.zsh;
+  };
+
+  # TODO move to packages.nix
+  environment.systemPackages = with pkgs;
+    [
+      dig.dnsutils
+      direnv
       emacs
-      neofetch
-      mise
-      spotify
-      vlc
-      veracrypt
+      foliate
       google-chrome
+      kitty
+      manix
+      mise
+      neofetch
+      spotify
       transmission_4
       transmission_4-gtk
+      unzip
+      veracrypt
+      vlc
+
+      # Packages needed for remote editing
+      git
+      gnupg
+      fd
+      (ripgrep.override {withPCRE2 = true;})
+
+
+      # Password Store
+      (pass.withExtensions (ext:
+        with ext; [
+          pass-audit
+        ]))
+      pass
 
       # LSP servers
       bash-language-server
@@ -60,30 +83,6 @@
       # Games
       openra
       openttd
-    ];
-    shell = pkgs.zsh;
-  };
-
-  # TODO move to packages.nix
-  environment.systemPackages = with pkgs;
-    [
-      # These packages are needed for remote editing
-      git
-      gnupg
-      fd
-      (ripgrep.override {withPCRE2 = true;})
-
-      unzip
-      dig.dnsutils
-      manix
-      direnv
-      foliate
-
-      (pass.withExtensions (ext:
-        with ext; [
-          pass-audit
-        ]))
-      pass
     ]
     ++ (import ../../lib/nh.nix {inherit pkgs;});
 
