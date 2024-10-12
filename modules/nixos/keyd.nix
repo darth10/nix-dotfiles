@@ -16,6 +16,7 @@
             # This will be handled when dconf config is moved to nix.
             meta         = "oneshot(meta)";
             control      = "oneshot(control)";
+            capslock     = "oneshot(control)";
             alt          = "oneshot(alt)";
             rightcontrol = "oneshot(alt)";
             rightalt     = "oneshot(control)";
