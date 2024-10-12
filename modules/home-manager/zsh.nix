@@ -62,6 +62,8 @@
 
         plugins = [
           "command-not-found"
+          "docker"
+          "docker-compose"
           "git"
           "history"
           "sudo"
