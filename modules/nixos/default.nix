@@ -38,7 +38,7 @@
   users.users.darth10 = {
     isNormalUser = true;
     description = "darth10";
-    extraGroups = ["networkmanager" "wheel" "libvirtd"];
+    extraGroups = ["networkmanager" "wheel"];
     # TODO move to environment.systemPackages
     packages = with pkgs; [
       kitty
