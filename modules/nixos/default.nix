@@ -44,10 +44,6 @@
       kitty
       emacs
       neofetch
-      # TODO move to emacs.nix << END
-      aspell
-      aspellDicts.en
-      # END
       mise
       spotify
       vlc
@@ -71,12 +67,11 @@
   # TODO move to packages.nix
   environment.systemPackages = with pkgs;
     [
-      # TODO these aren't needed - duplicated in home-manager << END
+      # These packages are needed for remote editing
       git
       gnupg
       fd
       (ripgrep.override {withPCRE2 = true;})
-      # END
 
       unzip
       dig.dnsutils

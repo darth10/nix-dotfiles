@@ -28,6 +28,8 @@
       '';
 
       packages = with pkgs; [
+        aspell
+        aspellDicts.en
         python312Packages.grip
       ];
 
@@ -38,7 +40,7 @@
         DOOMDIR = "${configDir}/doom";
         EMACSDIR = "${configDir}/emacs";
         DOOMLOCALDIR = "${config.xdg.dataHome}/doom";
-        GRIPHOME="${config.xdg.cacheHome}/grip";
+        GRIPHOME = "${config.xdg.cacheHome}/grip";
       };
       sessionPath = ["${configDir}/emacs/bin"];
     };
