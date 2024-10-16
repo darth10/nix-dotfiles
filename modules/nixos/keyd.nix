@@ -14,10 +14,11 @@
             # TODO This currently requires disabling the super key binding in
             # gnome, using: `gsettings set org.gnome.mutter overlay-key ""`.
             # This will be handled when dconf config is moved to nix.
+            capslock     = "oneshot(control)";
             meta         = "oneshot(meta)";
             control      = "oneshot(control)";
-            capslock     = "oneshot(control)";
             alt          = "oneshot(alt)";
+            rightmeta    = "oneshot(control)";
             rightcontrol = "oneshot(alt)";
             rightalt     = "oneshot(control)";
           };
