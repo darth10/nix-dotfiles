@@ -67,7 +67,6 @@
       fd
       (ripgrep.override {withPCRE2 = true;})
 
-
       # Password Store
       (pass.withExtensions (ext:
         with ext; [
@@ -100,6 +99,7 @@
 
   services = {
     printing.enable = true;
+    printing.drivers = with pkgs; [cnijfilter2];
 
     pipewire = {
       enable = true;
