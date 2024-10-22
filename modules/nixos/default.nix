@@ -52,6 +52,7 @@
       google-chrome
       kitty
       manix
+      pssh
       mise
       neofetch
       spotify
