@@ -39,6 +39,7 @@ in {
         htop
         rlwrap
         tree
+        kubectl
 
         fd
         (ripgrep.override {withPCRE2 = true;})

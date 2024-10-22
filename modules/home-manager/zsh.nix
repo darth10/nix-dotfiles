@@ -66,8 +66,9 @@
           "docker-compose"
           "git"
           "history"
-          "sudo"
+          "kubectl"
           "mise"
+          "sudo"
         ];
       };
     };
