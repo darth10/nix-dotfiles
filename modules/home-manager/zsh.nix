@@ -61,11 +61,13 @@
         enable = true;
 
         plugins = [
+          "aws"
           "command-not-found"
           "docker"
           "docker-compose"
           "git"
           "history"
+          "lein"
           "kubectl"
           "mise"
           "sudo"
