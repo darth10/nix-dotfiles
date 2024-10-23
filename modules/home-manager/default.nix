@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  lib,
   ...
 }: let
   username = "darth10";
@@ -11,13 +10,13 @@
     else "/home/darth10";
   dotfilesDir = homeDir + "/.nix-dotfiles";
   configDir = config.xdg.configHome;
-  inherit (lib) optionals;
 in {
   nix.package = pkgs.nix;
   xdg.enable = true;
 
   imports = [
     ../../lib/nix.settings.nix
+    ./packages.nix
     ./git.nix
     ./emacs.nix
     ./zsh.nix
@@ -33,24 +32,6 @@ in {
     username = username;
     homeDirectory = homeDir;
     preferXdgDirectories = true;
-
-    packages = with pkgs;
-      [
-        nano
-        gnupg
-        htop
-        rlwrap
-        tree
-        kubectl
-
-        fd
-        (ripgrep.override {withPCRE2 = true;})
-
-        alejandra
-      ]
-      ++ (import ../../lib/nh.nix {inherit pkgs;})
-      ++ optionals pkgs.stdenv.isLinux []
-      ++ optionals pkgs.stdenv.isDarwin [];
 
     file = {
       ".ssh/config".source = ../ssh/config;
