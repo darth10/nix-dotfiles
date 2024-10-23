@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: let
   username = "darth10";
@@ -10,6 +11,7 @@
     else "/home/darth10";
   dotfilesDir = homeDir + "/.nix-dotfiles";
   configDir = config.xdg.configHome;
+  inherit (lib) optionals;
 in {
   nix.package = pkgs.nix;
   xdg.enable = true;
@@ -46,7 +48,9 @@ in {
 
         alejandra
       ]
-      ++ (import ../../lib/nh.nix {inherit pkgs;});
+      ++ (import ../../lib/nh.nix {inherit pkgs;})
+      ++ optionals pkgs.stdenv.isLinux []
+      ++ optionals pkgs.stdenv.isDarwin [];
 
     file = {
       ".ssh/config".source = ../ssh/config;
