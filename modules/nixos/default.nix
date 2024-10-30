@@ -23,6 +23,8 @@
   hardware.pulseaudio.enable = false;
 
   boot = {
+    kernelPackages = pkgs.linuxPackages_latest;
+
     loader = {
       grub.enable = true;
       grub.device = "/dev/sda";
