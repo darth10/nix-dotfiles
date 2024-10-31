@@ -6,6 +6,7 @@
       emacs
       foliate
       google-chrome
+      vdhcoapp
       kitty
       manix
       pssh
