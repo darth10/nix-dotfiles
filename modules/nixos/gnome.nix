@@ -1,6 +1,8 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
+    gnomeExtensions.vitals
     gnomeExtensions.hue-lights
+    gnomeExtensions.tailscale-qs
     gnomeExtensions.unite
     gnomeExtensions.keyboard-modifiers-status
     gnomeExtensions.another-window-session-manager
