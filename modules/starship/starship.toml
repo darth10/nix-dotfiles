@@ -1,12 +1,12 @@
 add_newline = false
 format = """$character"""
 right_format = """$all"""
-continuation_prompt = '... '
+continuation_prompt = '  '
 
 [character]
-success_symbol = "[ ->](bold cyan)"
-error_symbol = "[ ->](bold red)"
-vimcmd_symbol = "[ :>](bold green)"
+success_symbol = "[>](bold cyan)"
+error_symbol = "[>](bold red)"
+vimcmd_symbol = "[:](bold green)"
 
 [time]
 disabled = false
@@ -27,7 +27,8 @@ format = '[$symbol$branch(:$remote_branch)]($style) '
 disabled = true
 
 [hostname]
-ssh_symbol = '🛰️ '
+style = 'bold blue'
+format = '[$hostname:]($style)'
 
 [nix_shell]
 format = '[$symbol $state]($style)'
@@ -55,4 +56,4 @@ format = '[$symbol($version )]($style)'
 format = '[$symbol($version )]($style)'
 
 [aws]
-format = '[$symbol($profile):$region (\[$duration\] )]($style)'
+format = '[($profile):$region (\[$duration\] )]($style)'

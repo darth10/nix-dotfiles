@@ -13,6 +13,7 @@
     ];
 
     file = {
+      # TODO use mkOutOfStoreSymlink
       ".config/starship.toml".source = ../starship/starship.toml;
     };
 
