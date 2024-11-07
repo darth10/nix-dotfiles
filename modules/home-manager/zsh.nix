@@ -13,26 +13,14 @@
       dotfilesDir = config.programs.zsh.dotfilesDir;
     in {
       packages = with pkgs; [
-        zsh
-        zsh-vi-mode
-        oh-my-zsh
-        starship
-        atuin
+        fzf
       ];
 
       file = {
         ".config/starship.toml".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/modules/starship/starship.toml";
       };
 
-      # TODO import from dotfiles-majaro/.aliases
       shellAliases = {
-        gits = "git status -s";
-        gitd = "git diff";
-        gita = "git add";
-        gitc = "git commit";
-        gitca = "git commit --amend";
-        gitl = "git log";
-
         nho = "nh os";
         nhob = "nh os build";
         nhos = "nh os switch --ask";
@@ -42,53 +30,87 @@
         nhhb = "nh home build -c $(nhhc)";
         nhhs = "nh home switch -b backup --ask -c $(nhhc)";
         nhhg = "echo 'generation:' $(home-manager generations | head -n 1 | cut -d' ' -f 5,6,7)";
+
+        icat = "kitty icat";
+        pnoise = "play -n synth pinknoise";
+        wnoise = "play -n synth pinknoise";
       };
     };
 
-    # TODO import/convert .zshrc from dotfiles
     programs = {
       zsh = {
         enable = true;
         dotDir = ".config/zsh";
-        enableCompletion = true;
+        enableCompletion = false; # Completion is setup using zinit
         history.path = "${config.xdg.dataHome}/zsh/zsh_history";
+        # zprof.enable = true;
 
-        syntaxHighlighting = {
-          enable = true;
-          styles = {
-            comment = "fg=gray";
-            unknown-token = "fg=red";
-          };
-        };
+        initExtraFirst = ''
+          [[ $TERM = "tramp" ]] && unsetopt zle && PS1='$ ' && return
+          [[ $TERM = "dumb" ]] && unset zle_bracketed_paste && unsetopt zle && PS1='$ '
+        '';
 
         initExtra = ''
+          if [[ $OSTYPE == 'darwin'* ]] && [ -f /opt/homebrew/bin/brew ]; then
+              eval "$(/opt/homebrew/bin/brew shellenv)"
+          elif [[ $OSTYPE == 'linux-gnu' ]] && [ -f /home/linuxbrew/.linuxbrew/bin/brew ]; then
+              eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+          fi
+          if command -v brew &> /dev/null ; then
+              FPATH="$(brew --prefix)/share/zsh/site-functions:''${FPATH}"
+          fi
+
+          ZINIT_HOME="${config.xdg.dataHome}/zinit/zinit.git"
+          [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+          [ ! -d $ZINIT_HOME/.git ] && ${pkgs.git}/bin/git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+          source "''${ZINIT_HOME}/zinit.zsh"
+
           ZVM_INIT_MODE=sourcing
 
-          source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+          zinit ice depth"1"; zi light zsh-users/zsh-completions
+          zinit ice depth"1"; zi light jeffreytse/zsh-vi-mode
+          zinit ice depth"1"; zi light zsh-users/zsh-syntax-highlighting
+          zinit ice depth"1"; zi light Aloxaf/fzf-tab
+
+          zi snippet OMZP::sudo
+          zi snippet OMZP::git
+          zi snippet OMZP::aws
+          zi snippet OMZP::kubectl
+          zi snippet OMZP::kubectx
+          zi ice as"completion"
+          zi snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
+          zi ice as"completion"
+          zi snippet OMZP::docker-compose/_docker-compose
+          zi ice as"completion"
+          zi snippet OMZP::lein/_lein
+
+          autoload -Uz compinit && compinit
+          zi cdreplay -q
 
           ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BEAM
           ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BLOCK
           ZVM_VISUAL_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BLOCK
           ZVM_VISUAL_LINE_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BLOCK
           ZVM_OPPEND_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BLOCK
+
+          zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+          zstyle ':completion:*' list-colors "''${(s.:.)LS_COLORS}"
+          zstyle ':completion:*' menu no
+          zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+          zstyle ':fzf-tab:*' use-fzf-default-opts yes
+
+          source <(${pkgs.fzf}/bin/fzf --zsh)
+          export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS"\
+          " --color=bg+:#073642,bg:#002b36,spinner:#2aa198,hl:#268bd2"\
+          " --color=fg:#839496,header:#268bd2,info:#b58900,pointer:#2aa198"\
+          " --color=marker:#2aa198,fg+:#eee8d5,prompt:#b58900,hl+:#268bd2"
+
+          typeset -A ZSH_HIGHLIGHT_STYLES
+          ZSH_HIGHLIGHT_STYLES[comment]='fg=gray'
+          ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=red'
+
+          export SHOW_AWS_PROMPT=false
         '';
-
-        oh-my-zsh = {
-          enable = true;
-
-          plugins = [
-            "aws"
-            "command-not-found"
-            "docker"
-            "docker-compose"
-            "git"
-            "history"
-            "lein"
-            "kubectl"
-            "mise"
-            "sudo"
-          ];
-        };
       };
 
       readline = {
