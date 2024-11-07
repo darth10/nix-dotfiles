@@ -49,9 +49,17 @@
     programs = {
       zsh = {
         enable = true;
-        enableCompletion = true;
         dotDir = ".config/zsh";
+        enableCompletion = true;
         history.path = "${config.xdg.dataHome}/zsh/zsh_history";
+
+        syntaxHighlighting = {
+          enable = true;
+          styles = {
+            comment = "fg=gray";
+            unknown-token = "fg=red";
+          };
+        };
 
         initExtra = ''
           ZVM_INIT_MODE=sourcing
