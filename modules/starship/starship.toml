@@ -6,7 +6,7 @@ continuation_prompt = '  '
 [character]
 success_symbol = "[>](bold cyan)"
 error_symbol = "[>](bold red)"
-vimcmd_symbol = "[:](bold green)"
+vimcmd_symbol = "[:](bold yellow)"
 
 [time]
 disabled = false
