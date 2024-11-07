@@ -34,8 +34,8 @@ in {
     preferXdgDirectories = true;
 
     file = {
-      ".ssh/config".source = ../ssh/config;
-      "${configDir}/kitty".source = ../kitty;
+      ".ssh/config".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/modules/ssh/config";
+      "${configDir}/kitty".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/modules/kitty";
       "${configDir}/htop/htoprc".text = ''
         color_scheme=1
       '';
@@ -67,6 +67,11 @@ in {
   programs = {
     home-manager.enable = true;
     htop.enable = true;
+
+    zsh = {
+      inherit dotfilesDir;
+    };
+
     doom-emacs = {
       inherit dotfilesDir;
       enable = true;
