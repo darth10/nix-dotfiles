@@ -12,6 +12,7 @@
       pssh
       mise
       neofetch
+      sox
       spotify
       transmission_4
       transmission_4-gtk
