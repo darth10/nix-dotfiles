@@ -65,27 +65,26 @@
           [ ! -d $ZINIT_HOME/.git ] && ${pkgs.git}/bin/git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
           source "''${ZINIT_HOME}/zinit.zsh"
 
-          ZVM_INIT_MODE=sourcing
-
-          zinit ice depth"1"; zi light zsh-users/zsh-completions
-          zinit ice depth"1"; zi light jeffreytse/zsh-vi-mode
-          zinit ice depth"1"; zi light zsh-users/zsh-syntax-highlighting
-          zinit ice depth"1"; zi light Aloxaf/fzf-tab
-
           zi snippet OMZP::sudo
           zi snippet OMZP::git
+          zi snippet OMZP::docker
           zi snippet OMZP::aws
           zi snippet OMZP::kubectl
           zi snippet OMZP::kubectx
-          zi ice as"completion"
-          zi snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
-          zi ice as"completion"
-          zi snippet OMZP::docker-compose/_docker-compose
-          zi ice as"completion"
-          zi snippet OMZP::lein/_lein
+          zi ice as"completion"; zi snippet OMZP::docker/completions/_docker
+          zi ice as"completion"; zi snippet OMZP::docker-compose/_docker-compose
+          zi ice as"completion"; zi snippet OMZP::lein/_lein
 
-          autoload -Uz compinit && compinit
-          zi cdreplay -q
+          ZVM_INIT_MODE=sourcing
+
+          zinit ice depth"1"; zi light jeffreytse/zsh-vi-mode
+          zi depth"1" wait lucid for \
+              light-mode zsh-users/zsh-syntax-highlighting \
+              light-mode Aloxaf/fzf-tab
+
+          zi depth"1" wait"1" lucid for \
+              atload"zpcompinit; zpcdreplay" \
+              light-mode zsh-users/zsh-completions
 
           ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BEAM
           ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BLOCK
