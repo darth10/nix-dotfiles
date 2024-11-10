@@ -139,7 +139,6 @@
 
       atuin = {
         enable = true;
-        enableZshIntegration = true;
         flags = ["--disable-up-arrow"];
 
         settings = {
@@ -152,7 +151,6 @@
 
       direnv = {
         enable = true;
-        enableZshIntegration = true;
         nix-direnv.enable = true;
       };
     };
