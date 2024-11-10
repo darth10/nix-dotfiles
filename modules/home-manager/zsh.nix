@@ -77,7 +77,10 @@
 
           ZVM_INIT_MODE=sourcing
 
-          zinit ice depth"1"; zi light jeffreytse/zsh-vi-mode
+          zinit depth"1" for \
+              light-mode jeffreytse/zsh-vi-mode \
+              light-mode sgpthomas/zsh-up-dir
+
           zi depth"1" wait lucid for \
               light-mode zsh-users/zsh-syntax-highlighting \
               light-mode Aloxaf/fzf-tab
