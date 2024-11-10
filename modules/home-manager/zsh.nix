@@ -113,6 +113,11 @@
         '';
       };
 
+      zoxide = {
+        enable = true;
+        options = ["--cmd" "cd"];
+      };
+
       readline = {
         enable = true;
         extraConfig = ''
