@@ -35,6 +35,10 @@
         pnoise = "play -n synth pinknoise";
         wnoise = "play -n synth pinknoise";
       };
+
+      sessionVariables = {
+        SHOW_AWS_PROMPT = "false";
+      };
     };
 
     programs = {
@@ -111,8 +115,6 @@
           typeset -A ZSH_HIGHLIGHT_STYLES
           ZSH_HIGHLIGHT_STYLES[comment]='fg=gray'
           ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=red'
-
-          export SHOW_AWS_PROMPT=false
         '';
       };
 
