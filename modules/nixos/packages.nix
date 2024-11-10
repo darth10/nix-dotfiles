@@ -19,6 +19,7 @@
       unzip
       veracrypt
       vlc
+      wl-clipboard
 
       # Packages needed for remote editing
       git
