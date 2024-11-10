@@ -123,6 +123,11 @@
         options = ["--cmd" "cd"];
       };
 
+      eza = {
+        enable = true;
+        icons = "auto";
+      };
+
       readline = {
         enable = true;
         extraConfig = ''
