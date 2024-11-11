@@ -64,6 +64,10 @@
               FPATH="$(brew --prefix)/share/zsh/site-functions:''${FPATH}"
           fi
 
+          if command -v docker &> /dev/null ; then
+              source <(docker completion zsh)
+          fi
+
           ZINIT_HOME="${config.xdg.dataHome}/zinit/zinit.git"
           [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
           [ ! -d $ZINIT_HOME/.git ] && ${pkgs.git}/bin/git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
@@ -71,12 +75,9 @@
 
           zi snippet OMZP::sudo
           zi snippet OMZP::git
-          zi snippet OMZP::docker
           zi snippet OMZP::aws
           zi snippet OMZP::kubectl
           zi snippet OMZP::kubectx
-          zi ice as"completion"; zi snippet OMZP::docker/completions/_docker
-          zi ice as"completion"; zi snippet OMZP::docker-compose/_docker-compose
           zi ice as"completion"; zi snippet OMZP::lein/_lein
 
           ZVM_INIT_MODE=sourcing
