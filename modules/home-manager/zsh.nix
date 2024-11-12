@@ -93,6 +93,7 @@
           zi depth"1" wait lucid for \
               light-mode zsh-users/zsh-syntax-highlighting \
               light-mode Aloxaf/fzf-tab \
+              light-mode Freed-Wu/zsh-help \
               light-mode zlsun/solarized-man
 
           zi depth"1" wait"1" lucid for \
