@@ -129,6 +129,13 @@
         options = ["--cmd" "cd"];
       };
 
+      bat = {
+        enable = true;
+        config = {
+          theme = "Solarized (dark)";
+        };
+      };
+
       eza = {
         enable = true;
         icons = "auto";
