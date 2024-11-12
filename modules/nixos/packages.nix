@@ -10,7 +10,6 @@
       kitty
       manix
       pssh
-      mise
       neofetch
       sox
       spotify

@@ -20,6 +20,7 @@ in {
     ./git.nix
     ./emacs.nix
     ./zsh.nix
+    ./mise.nix
     ./fonts.nix
   ];
 
