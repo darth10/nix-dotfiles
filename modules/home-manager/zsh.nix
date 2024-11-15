@@ -125,6 +125,9 @@
         '';
       };
 
+      starship.enable = true;
+      yazi.enable = true;
+
       zoxide = {
         enable = true;
         options = ["--cmd" "cd"];
@@ -148,8 +151,6 @@
           set editing-mode vi
         '';
       };
-
-      starship.enable = true;
 
       atuin = {
         enable = true;
