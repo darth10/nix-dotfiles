@@ -88,7 +88,8 @@
 
           zinit depth"1" for \
               light-mode jeffreytse/zsh-vi-mode \
-              light-mode sgpthomas/zsh-up-dir
+              light-mode sgpthomas/zsh-up-dir \
+              light-mode redxtech/zsh-show-path
 
           zi depth"1" wait lucid for \
               light-mode zsh-users/zsh-syntax-highlighting \
