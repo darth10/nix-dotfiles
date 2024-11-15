@@ -90,6 +90,7 @@
               light-mode zdharma-continuum/fast-syntax-highlighting \
               light-mode jeffreytse/zsh-vi-mode \
               light-mode sgpthomas/zsh-up-dir \
+              light-mode momo-lab/zsh-smartinput \
               light-mode redxtech/zsh-show-path
 
           zi depth"1" wait lucid for \
