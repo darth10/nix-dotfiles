@@ -96,7 +96,8 @@
           zi depth"1" wait lucid for \
               light-mode Aloxaf/fzf-tab \
               light-mode Freed-Wu/zsh-help \
-              light-mode zlsun/solarized-man
+              light-mode zlsun/solarized-man \
+              light-mode MichaelAquilina/zsh-you-should-use
 
           zi depth"1" wait"1" lucid for \
               atload"zpcompinit; zpcdreplay" \
