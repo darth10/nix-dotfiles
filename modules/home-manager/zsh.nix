@@ -87,12 +87,12 @@
           ZVM_INIT_MODE=sourcing
 
           zinit depth"1" for \
+              light-mode zdharma-continuum/fast-syntax-highlighting \
               light-mode jeffreytse/zsh-vi-mode \
               light-mode sgpthomas/zsh-up-dir \
               light-mode redxtech/zsh-show-path
 
           zi depth"1" wait lucid for \
-              light-mode zsh-users/zsh-syntax-highlighting \
               light-mode Aloxaf/fzf-tab \
               light-mode Freed-Wu/zsh-help \
               light-mode zlsun/solarized-man
@@ -120,9 +120,7 @@
           " --color=fg:#839496,header:#268bd2,info:#b58900,pointer:#2aa198"\
           " --color=marker:#2aa198,fg+:#eee8d5,prompt:#b58900,hl+:#268bd2"
 
-          typeset -A ZSH_HIGHLIGHT_STYLES
-          ZSH_HIGHLIGHT_STYLES[comment]='fg=gray'
-          ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=red'
+          [ ! -f $XDG_CACHE_HOME/fsh/current_theme.zsh ] && fast-theme sv-plant
         '';
       };
 
