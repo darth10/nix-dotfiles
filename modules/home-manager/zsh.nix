@@ -82,11 +82,11 @@
           zi snippet OMZP::aws
           zi snippet OMZP::kubectl
           zi snippet OMZP::kubectx
-          zi ice as"completion"; zi snippet OMZP::lein/_lein
+          zi ice blockf as"completion"; zi snippet OMZP::lein/_lein
 
           ZVM_INIT_MODE=sourcing
 
-          zinit depth"1" for \
+          zi depth"1" for \
               light-mode zdharma-continuum/fast-syntax-highlighting \
               light-mode jeffreytse/zsh-vi-mode \
               light-mode sgpthomas/zsh-up-dir \
@@ -99,8 +99,8 @@
               light-mode zlsun/solarized-man \
               light-mode MichaelAquilina/zsh-you-should-use
 
-          zi depth"1" wait"1" lucid for \
-              atload"zpcompinit; zpcdreplay" \
+          zi depth"1" wait"1" lucid blockf for \
+              atload"zicompinit; zicdreplay" \
               light-mode zsh-users/zsh-completions
 
           ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BEAM
