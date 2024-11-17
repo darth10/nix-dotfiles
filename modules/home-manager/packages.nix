@@ -12,7 +12,6 @@ in {
       gnupg
       htop
       rlwrap
-      tree
       kubectl
 
       fd
