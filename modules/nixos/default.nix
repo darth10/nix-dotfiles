@@ -3,7 +3,7 @@
 
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.05";
+  system.stateVersion = "25.05";
 
   imports = [
     ../../lib/nix.settings.nix
