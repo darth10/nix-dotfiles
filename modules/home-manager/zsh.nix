@@ -34,9 +34,13 @@
         icat = "kitty icat";
         pnoise = "play -n synth pinknoise";
         wnoise = "play -n synth pinknoise";
+
+        e = "emacsclient -t -a=";
       };
 
       sessionVariables = {
+        EDITOR = "e";
+        VISUAL = "e";
         SHOW_AWS_PROMPT = "false";
       };
     };

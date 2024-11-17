@@ -36,7 +36,6 @@
       # These values are store in ~/.nix-profile/etc/profile.d/hm-session-vars.sh
       # Sessions vars and path require logout for correct activation.
       sessionVariables = {
-        EDITOR = "emacsclient -t -a ''";
         DOOMDIR = "${configDir}/doom";
         EMACSDIR = "${configDir}/emacs";
         DOOMLOCALDIR = "${config.xdg.dataHome}/doom";
