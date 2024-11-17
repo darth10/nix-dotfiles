@@ -82,7 +82,6 @@
           source "''${ZINIT_HOME}/zinit.zsh"
 
           zi snippet OMZP::sudo
-          zi snippet OMZP::git
           zi snippet OMZP::aws
           zi snippet OMZP::kubectl
           zi snippet OMZP::kubectx
@@ -95,7 +94,8 @@
               light-mode jeffreytse/zsh-vi-mode \
               light-mode sgpthomas/zsh-up-dir \
               light-mode momo-lab/zsh-smartinput \
-              light-mode redxtech/zsh-show-path
+              light-mode redxtech/zsh-show-path \
+              light-mode davidde/git
 
           zi depth"1" wait lucid for \
               light-mode Aloxaf/fzf-tab \
