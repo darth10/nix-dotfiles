@@ -8,7 +8,7 @@ in {
   home.packages = with pkgs;
     [
       comma
-      nano
+      vim
       gnupg
       htop
       rlwrap
