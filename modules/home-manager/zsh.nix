@@ -95,7 +95,8 @@
               light-mode sgpthomas/zsh-up-dir \
               light-mode momo-lab/zsh-smartinput \
               light-mode redxtech/zsh-show-path \
-              light-mode davidde/git
+              light-mode davidde/git \
+              light-mode zshzoo/macos
 
           zi depth"1" wait lucid for \
               light-mode Aloxaf/fzf-tab \
