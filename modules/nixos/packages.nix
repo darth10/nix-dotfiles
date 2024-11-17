@@ -39,6 +39,7 @@
       nil
 
       # Games
+      tt
       openra
       openttd
     ]
