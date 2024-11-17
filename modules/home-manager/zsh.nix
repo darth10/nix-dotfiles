@@ -96,6 +96,7 @@
               light-mode momo-lab/zsh-smartinput \
               light-mode redxtech/zsh-show-path \
               light-mode davidde/git \
+              light-mode Bhupesh-V/ugit \
               light-mode zshzoo/macos
 
           zi depth"1" wait lucid for \
