@@ -16,6 +16,7 @@ in {
 
       fd
       (ripgrep.override {withPCRE2 = true;})
+      jq
 
       alejandra
     ]

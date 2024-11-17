@@ -101,7 +101,8 @@
               light-mode Aloxaf/fzf-tab \
               light-mode Freed-Wu/zsh-help \
               light-mode zlsun/solarized-man \
-              light-mode MichaelAquilina/zsh-you-should-use
+              light-mode MichaelAquilina/zsh-you-should-use \
+              light-mode reegnz/jq-zsh-plugin
 
           zi depth"1" wait"1" lucid blockf for \
               atload"zicompinit; zicdreplay" \
