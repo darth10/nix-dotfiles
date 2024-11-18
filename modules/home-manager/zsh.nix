@@ -68,14 +68,6 @@
               FPATH="$(brew --prefix)/share/zsh/site-functions:''${FPATH}"
           fi
 
-          if command -v docker &> /dev/null ; then
-              source <(docker completion zsh)
-          fi
-
-          if command -v mise &> /dev/null ; then
-              source <(mise completion zsh)
-          fi
-
           ZINIT_HOME="${config.xdg.dataHome}/zinit/zinit.git"
           [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
           [ ! -d $ZINIT_HOME/.git ] && ${pkgs.git}/bin/git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
@@ -107,7 +99,9 @@
               light-mode reegnz/jq-zsh-plugin
 
           zi depth"1" wait"1" lucid blockf for \
-              atload"zicompinit; zicdreplay" \
+              atload"zicompinit; zicdreplay;\
+                     command -v docker &> /dev/null && source <(docker completion zsh); \
+                     command -v mise &> /dev/null && source <(mise completion zsh)" \
               light-mode zsh-users/zsh-completions
 
           ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BEAM
