@@ -8,7 +8,6 @@
       google-chrome
       vdhcoapp
       kitty
-      manix
       pssh
       neofetch
       sox

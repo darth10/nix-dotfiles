@@ -21,6 +21,8 @@
       };
 
       shellAliases = {
+        manixf = ''manix "" | grep '^# ' | sed 's/^# \(.*\) (.*/\1/;s/ (.*//;s/^# //' | fzf --preview="manix '{}'" | xargs manix'';
+
         nho = "nh os";
         nhob = "nh os build";
         nhos = "nh os switch --ask";

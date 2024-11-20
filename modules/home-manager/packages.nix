@@ -8,6 +8,7 @@ in {
   home.packages = with pkgs;
     [
       comma
+      manix
       vim
       gnupg
       htop
