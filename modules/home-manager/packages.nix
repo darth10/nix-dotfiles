@@ -9,6 +9,7 @@ in {
     [
       comma
       manix
+      nix-search-cli
       vim
       gnupg
       htop
