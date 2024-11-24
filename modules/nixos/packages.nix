@@ -6,6 +6,7 @@
       emacs
       foliate
       google-chrome
+      guile
       vdhcoapp
       kitty
       pssh
