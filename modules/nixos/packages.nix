@@ -44,4 +44,12 @@
       openttd
     ]
     ++ (import ../../lib/nh.nix {inherit pkgs;});
+
+  # HACK This is needed for openra
+  nixpkgs.config.permittedInsecurePackages = [
+    "dotnet-runtime-6.0.36"
+    "dotnet-runtime-wrapped-6.0.36"
+    "dotnet-sdk-6.0.428"
+    "dotnet-sdk-wrapped-6.0.428"
+  ];
 }
