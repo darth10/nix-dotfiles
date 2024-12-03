@@ -14,13 +14,16 @@
       ]);
   };
 
+  # Ensure ~/.config/autostart/pcloud.desktop is recreated
+  # with correct version, after updating the pcloud version.
+
   pcloud = pkgs-22-11.pcloud.overrideAttrs (prev: let
-    version = "1.14.7";
-    code = "XZhPkU0Zh5gulxHfMn4j1dYBS4dh45iDQHby";
+    version = "1.14.8";
+    code = "XZxqNX5Z7nKd4XMTlkbMbnuRDuhyfL1g5efk";
     # Use codes from: https://www.pcloud.com/release-notes/linux.html
     src = pkgs.fetchzip {
       url = "https://api.pcloud.com/getpubzip?code=${code}&filename=${prev.pname}-${version}.zip";
-      hash = "sha256-fzQVuCI3mK93Y3Fwzc0WM5rti0fTZhRm+Qj1CHC8CJ4=";
+      hash = "sha256-+uWvaNA9mCF9vkBbNnsak+h11mcl9QBamBhMzt68Rfc=";
     };
 
     appimageContents = pkgs.appimageTools.extractType2 {
