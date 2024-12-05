@@ -33,10 +33,22 @@
         ]))
       pass
 
+      # LaTeX
+      (texlive.combine
+        {
+          inherit
+            (texlive)
+            scheme-small
+            amsmath
+            minted
+            ;
+        })
+
       # LSP servers
       bash-language-server
       clojure-lsp
       nil
+      texlab
 
       # Games
       tt
