@@ -15,6 +15,7 @@
       spotify
       transmission_4
       transmission_4-gtk
+      usbimager
       unzip
       veracrypt
       vlc
