@@ -4,6 +4,7 @@
     gnomeExtensions.hue-lights
     gnomeExtensions.tailscale-qs
     gnomeExtensions.unite
+    gnomeExtensions.clipboard-indicator
     gnomeExtensions.keyboard-modifiers-status
     gnomeExtensions.another-window-session-manager
   ];
