@@ -75,7 +75,6 @@ in {
 
     doom-emacs = {
       inherit dotfilesDir;
-      enable = true;
     };
   };
 }
