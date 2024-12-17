@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, config, ...}: {
   nixpkgs.config.allowUnfree = true;
 
   # Before changing this value read the documentation for this option
@@ -31,7 +31,11 @@
       grub.useOSProber = true;
       systemd-boot.configurationLimit = 10;
     };
+
+    binfmt.emulatedSystems = ["aarch64-linux"];
   };
+
+  nix.settings.extra-platforms = config.boot.binfmt.emulatedSystems;
 
   networking = {
     hostName = "starf0rge";

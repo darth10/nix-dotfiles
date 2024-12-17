@@ -4,8 +4,13 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs_22_11.url = "github:nixos/nixpkgs/nixos-22.11";
-    flake-utils.url = "github:numtide/flake-utils";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    systems.url = "github:nix-systems/default";
+
+    flake-utils = {
+      url = "github:numtide/flake-utils";
+      inputs.systems.follows = "systems";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -16,12 +21,19 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    deploy-rs = {
+      url = "github:serokell/deploy-rs";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.utils.follows = "flake-utils";
+    };
   };
 
   outputs = {
     self,
     nixpkgs,
     flake-utils,
+    deploy-rs,
     ...
   } @ inputs: let
     lib = nixpkgs.lib // inputs.home-manager.lib;
@@ -57,5 +69,44 @@
         ];
       };
     });
+
+    deploy.nodes.maelstrom = let
+      system = "aarch64-linux";
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
+      deploy-pkgs = import nixpkgs {
+        inherit system;
+        overlays = [
+          deploy-rs.overlay
+          (self: super: {
+            deploy-rs = {
+              inherit (pkgs) deploy-rs;
+              lib = super.deploy-rs.lib;
+            };
+          })
+        ];
+      };
+    in {
+      hostname = "maelstrom-node";
+      profiles.home-manager = {
+        user = "darth10";
+        path = deploy-pkgs.deploy-rs.lib.activate.home-manager (
+          lib.homeManagerConfiguration {
+            inherit pkgs;
+            extraSpecialArgs = {inherit inputs;};
+
+            modules = [
+              ./modules/home-manager
+              ./modules/home-manager/maelstrom.nix
+              inputs.nix-index-database.hmModules.nix-index
+            ];
+          }
+        );
+      };
+    };
+
+    checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
   };
 }

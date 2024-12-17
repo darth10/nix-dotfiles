@@ -18,5 +18,13 @@
   ```
 - For VPN, download and import [OpenVPN configuration from PIA][openvpn-pia].
 
+## Remote deployment
+
+Use the `maelstrom` flake:
+``` sh
+nix run nixpkgs#deploy-rs -- .#maelstrom.home-manager --hostname <HOSTNAME>
+```
+You can use the `--skip-checks` option to speed up deployment.
+
 [nix-installer]: https://github.com/DeterminateSystems/nix-installer
 [openvpn-pia]: https://www.privateinternetaccess.com/openvpn/openvpn.zip
