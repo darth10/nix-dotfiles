@@ -63,7 +63,10 @@
 
   services = {
     printing.enable = true;
-    printing.drivers = with pkgs; [cnijfilter2];
+    # FIXME cnijfilter2 build error
+    # https://github.com/NixOS/nixpkgs/issues/368624
+    # https://github.com/NixOS/nixpkgs/issues/368651
+    # printing.drivers = with pkgs; [cnijfilter2];
 
     pipewire = {
       enable = true;
