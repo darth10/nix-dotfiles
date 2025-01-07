@@ -20,7 +20,6 @@
 
   time.timeZone = "Pacific/Auckland";
   security.rtkit.enable = true;
-  hardware.pulseaudio.enable = false;
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
@@ -63,11 +62,9 @@
 
   services = {
     printing.enable = true;
-    # FIXME cnijfilter2 build error
-    # https://github.com/NixOS/nixpkgs/issues/368624
-    # https://github.com/NixOS/nixpkgs/issues/368651
-    # printing.drivers = with pkgs; [cnijfilter2];
+    printing.drivers = with pkgs; [cnijfilter2];
 
+    pulseaudio.enable = false;
     pipewire = {
       enable = true;
       pulse.enable = true;
