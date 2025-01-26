@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs_22_11.url = "github:nixos/nixpkgs/nixos-22.11";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     systems.url = "github:nix-systems/default";
 
@@ -45,7 +44,6 @@
         modules = [
           inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x230
           ./modules/nixos
-          ./modules/pcloud
         ];
       };
     };
