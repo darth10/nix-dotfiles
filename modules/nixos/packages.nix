@@ -43,6 +43,9 @@
             scheme-small
             amsmath
             minted
+            isodate
+            textpos
+            titlesec
             ;
         })
 
