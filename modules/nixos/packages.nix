@@ -61,6 +61,23 @@
     ]
     ++ (import ../../lib/nh.nix {inherit pkgs;});
 
+  environment.gnome.excludePackages = with pkgs; [
+    atomix
+    epiphany
+    geary
+    gedit
+    gnome-characters
+    gnome-maps
+    gnome-music
+    gnome-photos
+    gnome-terminal
+    gnome-tour
+    hitori
+    iagno
+    tali
+    totem
+  ];
+
   # HACK This is needed for openra
   nixpkgs.config.permittedInsecurePackages = [
     "dotnet-runtime-6.0.36"
