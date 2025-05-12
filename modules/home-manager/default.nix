@@ -17,6 +17,7 @@ in {
   imports = [
     ../../lib/nix.settings.nix
     ./packages.nix
+    ./gnome.nix
     ./git.nix
     ./emacs.nix
     ./zsh.nix
