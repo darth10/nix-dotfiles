@@ -9,8 +9,8 @@
     ../../lib/nix.settings.nix
     ./hardware-configuration.nix
     ./packages.nix
+    ./display.nix
     ./tailscale.nix
-    ./gnome.nix
     ./fonts.nix
     ./keyd.nix
     ./virtualisation.nix

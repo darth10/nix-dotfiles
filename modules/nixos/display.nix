@@ -1,4 +1,14 @@
 {pkgs, ...}: {
+  services.xserver = {
+    enable = true;
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
+    xkb = {
+      layout = "nz";
+      variant = "";
+    };
+  };
+
   systemd.tmpfiles.rules = [
     # This should all be copied from ~/.config/monitors.xml:
     "L+ /run/gdm/.config/monitors.xml - - - - ${pkgs.writeText "gdm-monitors.xml" ''
@@ -96,14 +106,4 @@
       </monitors>
     ''}"
   ];
-
-  services.xserver = {
-    enable = true;
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
-    xkb = {
-      layout = "nz";
-      variant = "";
-    };
-  };
 }
