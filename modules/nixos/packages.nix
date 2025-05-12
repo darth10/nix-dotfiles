@@ -9,7 +9,6 @@
       guile
       vdhcoapp
       kitty
-      pcloud
       pssh
       neofetch
       sox

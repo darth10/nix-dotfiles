@@ -23,6 +23,7 @@ in {
     ./zsh.nix
     ./mise.nix
     ./fonts.nix
+    ./pcloud.nix
   ];
 
   home = {

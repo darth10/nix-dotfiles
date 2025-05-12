@@ -65,6 +65,7 @@
           inputs.nix-index-database.hmModules.nix-index
           {
             desktop.gnome.enable = true;
+            services.pcloud.enable = true;
             programs.doom-emacs.enable = true;
           }
         ];
