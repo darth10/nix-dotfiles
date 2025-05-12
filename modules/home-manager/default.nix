@@ -57,7 +57,7 @@ in {
     # These values are store in ~/.nix-profile/etc/profile.d/hm-session-vars.sh
     # Sessions vars and path require logout for correct activation.
     sessionVariables = {
-      FLAKE = dotfilesDir;
+      NH_FLAKE = dotfilesDir;
 
       GNUPGHOME = "${config.xdg.dataHome}/gnupg";
       PASSWORD_STORE_DIR = "${homeDir}/Cloud/pass";
