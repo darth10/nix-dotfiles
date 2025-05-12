@@ -51,12 +51,10 @@
         history.path = "${config.xdg.dataHome}/zsh/zsh_history";
         # zprof.enable = true;
 
-        initExtraFirst = ''
+        initContent = ''
           [[ $TERM = "tramp" ]] && unsetopt zle && PS1='$ ' && return
           [[ $TERM = "dumb" ]] && unset zle_bracketed_paste && unsetopt zle && PS1='$ '
-        '';
 
-        initExtra = ''
           if [[ $OSTYPE == 'darwin'* ]] && [ -f /opt/homebrew/bin/brew ]; then
               eval "$(/opt/homebrew/bin/brew shellenv)"
           elif [[ $OSTYPE == 'linux-gnu' ]] && [ -f /home/linuxbrew/.linuxbrew/bin/brew ]; then
