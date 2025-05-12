@@ -1,16 +1,6 @@
 {pkgs, ...}: {
-  environment.systemPackages = with pkgs; [
-    gnomeExtensions.vitals
-    gnomeExtensions.hue-lights
-    gnomeExtensions.tailscale-qs
-    gnomeExtensions.unite
-    gnomeExtensions.clipboard-indicator
-    gnomeExtensions.keyboard-modifiers-status
-    gnomeExtensions.another-window-session-manager
-  ];
-
   systemd.tmpfiles.rules = [
-      # This should all be copied from ~/.config/monitors.xml:
+    # This should all be copied from ~/.config/monitors.xml:
     "L+ /run/gdm/.config/monitors.xml - - - - ${pkgs.writeText "gdm-monitors.xml" ''
       <monitors version="2">
         <configuration>

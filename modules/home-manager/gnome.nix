@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: {
   options = {
@@ -10,6 +11,16 @@
   };
 
   config = lib.mkIf config.desktop.gnome.enable {
+    home.packages = with pkgs; [
+      gnomeExtensions.vitals
+      gnomeExtensions.hue-lights
+      gnomeExtensions.tailscale-qs
+      gnomeExtensions.unite
+      gnomeExtensions.clipboard-indicator
+      gnomeExtensions.keyboard-modifiers-status
+      gnomeExtensions.another-window-session-manager
+    ];
+
     dconf.settings = with lib.hm.gvariant; {
       "apps/seahorse/listing" = {
         keyrings-selected = ["openssh:///home/darth10/.ssh"];
