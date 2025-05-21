@@ -11,22 +11,17 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = ["xhci_pci" "ehci_pci" "ahci" "usb_storage" "sd_mod" "sdhci_pci"];
+  boot.initrd.availableKernelModules = ["xhci_pci" "ehci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "sdhci_pci"];
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-intel"];
   boot.extraModulePackages = [];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/858d5ca5-745a-415a-bec7-8f1433cebcc6";
+    device = "/dev/disk/by-uuid/7c6e3e0b-f817-4de8-91c4-2c4bd2387911";
     fsType = "ext4";
   };
   fileSystems."/data" = {
     device = "/dev/disk/by-uuid/19CBB5E91F23BFE8";
-    fsType = "ntfs";
-    options = ["uid=1000" "gid=100" "dmask=007" "fmask=117"];
-  };
-  fileSystems."/windows" = {
-    device = "/dev/disk/by-uuid/F2A44BB2A44B785D";
     fsType = "ntfs";
     options = ["uid=1000" "gid=100" "dmask=007" "fmask=117"];
   };
