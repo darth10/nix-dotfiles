@@ -5,10 +5,20 @@
     Be sure to import the new SSH key into your GitHub account.
   - Import an existing SSH key using `ssh-add`.
     You can use `ssh-add -l` to view all valid SSH keys.
-- Install Nix using the [Determinate Nix installer][nix-installer]:
-  ```sh
-  curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
-  ```
+- Enable `nix-command` and `flakes` features:
+  - On any OS other than NixOS, install Nix using the
+    [Determinate Nix installer][nix-installer]:
+
+    ```sh
+    curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+    ```
+  - On NixOS, add the following to `/etc/nixos/configuration.nix` and run `sudo nixos-rebuild switch`:
+    ```nix
+    nix = {
+      package = pkgs.nixFlakes;
+      extraOptions = "experimental-features = nix-command flakes";
+    };
+    ```
 - Clone the repository and run `scripts/install`:
   ```sh
   nix shell nixpkgs#git --extra-experimental-features 'nix-command flakes'

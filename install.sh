@@ -5,8 +5,7 @@ set -euo pipefail
 
 CURRENT_SYSTEM=$(nix eval --impure --raw --expr builtins.currentSystem)
 
-nix run --extra-experimental-features 'nix-command flakes' \
-    home-manager/release-24.05 -- -b backup switch \
+nix run home-manager/release-24.05 -- -b backup switch \
     --flake ".#$CURRENT_SYSTEM.darth10"
 
 # NixOS
