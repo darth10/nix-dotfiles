@@ -1,12 +1,15 @@
 {pkgs, ...}: {
-  services.xserver = {
-    enable = true;
+  services = {
+    xserver = {
+      enable = true;
+      xkb = {
+        layout = "nz";
+        variant = "";
+      };
+    };
+
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
-    xkb = {
-      layout = "nz";
-      variant = "";
-    };
   };
 
   systemd.tmpfiles.rules = [
