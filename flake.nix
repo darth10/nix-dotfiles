@@ -62,7 +62,7 @@
 
         modules = [
           ./modules/home-manager
-          inputs.nix-index-database.hmModules.nix-index
+          inputs.nix-index-database.homeModules.nix-index
           {
             desktop.gnome.enable = true;
             services.pcloud.enable = true;
@@ -102,7 +102,7 @@
             modules = [
               ./modules/home-manager
               ./modules/home-manager/maelstrom.nix
-              inputs.nix-index-database.hmModules.nix-index
+              inputs.nix-index-database.homeModules.nix-index
             ];
           }
         );
