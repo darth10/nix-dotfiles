@@ -7,10 +7,12 @@
   programs.git = {
     enable = true;
 
-    userName = "Akhil Wali";
-    userEmail = "akhil.wali.10@gmail.com";
+    settings = {
+      user = {
+        name = "Akhil Wali";
+        email = "akhil.wali.10@gmail.com";
+      };
 
-    extraConfig = {
       commit.gpgsign = true;
       user.signingkey = "CBA0458B682A8544";
 
@@ -18,16 +20,18 @@
       merge.conflictstyle = "diff3";
       diff.colorMoved = "default";
     };
+  };
 
-    delta = {
-      enable = true;
-      options = {
-        feature = "theme";
-        navigate = true;
-        theme = {
-          dark = true;
-          syntax-theme = "Nord";
-        };
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
+
+    options = {
+      feature = "theme";
+      navigate = true;
+      theme = {
+        dark = true;
+        syntax-theme = "Nord";
       };
     };
   };
