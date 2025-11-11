@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   fonts.packages = with pkgs; [
-    noto-fonts-emoji
-    vistafonts
+    noto-fonts-color-emoji
+    vista-fonts
   ];
 }
