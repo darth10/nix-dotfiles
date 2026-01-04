@@ -50,7 +50,7 @@
 
   programs = {
     zsh.enable = true;
-    nodejs.enable = true;
+    nodejs.enable = false;
     firefox.enable = true;
 
     nh = {
@@ -62,7 +62,7 @@
 
   services = {
     printing.enable = true;
-    printing.drivers = with pkgs; [cnijfilter2];
+    # printing.drivers = with pkgs; [cnijfilter2];
 
     pulseaudio.enable = false;
     pipewire = {
