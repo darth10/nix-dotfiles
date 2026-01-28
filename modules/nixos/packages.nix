@@ -7,7 +7,7 @@
       foliate
       google-chrome
       guile
-      vdhcoapp
+      # vdhcoapp
       kitty
       pssh
       neofetch

@@ -62,7 +62,7 @@
 
   services = {
     printing.enable = true;
-    # printing.drivers = with pkgs; [cnijfilter2];
+    printing.drivers = with pkgs; [cnijfilter2];
 
     pulseaudio.enable = false;
     pipewire = {
