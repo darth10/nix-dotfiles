@@ -77,6 +77,7 @@
     iagno
     tali
     totem
+    usbutils
   ];
 
   # HACK This is needed for openra
