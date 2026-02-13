@@ -7,6 +7,7 @@
       foliate
       gcc
       google-chrome
+      gnumake
       guile
       # vdhcoapp
       kitty
@@ -62,7 +63,6 @@
     ]
     ++ (import ../../lib/nh.nix {inherit pkgs;});
 
-  # TODO gnumake
   environment.gnome.excludePackages = with pkgs; [
     atomix
     epiphany
