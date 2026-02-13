@@ -5,6 +5,7 @@
       direnv
       emacs
       foliate
+      gcc
       google-chrome
       guile
       # vdhcoapp
