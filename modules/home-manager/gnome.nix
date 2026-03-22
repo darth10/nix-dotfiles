@@ -21,6 +21,8 @@
       gnomeExtensions.another-window-session-manager
     ];
 
+    # Generated using:
+    # dconf dump / | , dconf2nix > dconf.nix
     dconf.settings = with lib.hm.gvariant; {
       "apps/seahorse/listing" = {
         keyrings-selected = ["openssh:///home/darth10/.ssh"];
