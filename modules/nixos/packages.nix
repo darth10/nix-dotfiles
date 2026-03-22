@@ -4,6 +4,7 @@
       dig.dnsutils
       direnv
       emacs
+      fastfetch
       foliate
       gcc
       google-chrome
@@ -12,7 +13,6 @@
       # vdhcoapp
       kitty
       pssh
-      neofetch
       sox
       spotify
       transmission_4
