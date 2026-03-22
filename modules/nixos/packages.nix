@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs;
     [
+      cmake
       dig.dnsutils
       direnv
       emacs
@@ -12,6 +13,7 @@
       guile
       # vdhcoapp
       kitty
+      libtool
       pssh
       sox
       spotify
