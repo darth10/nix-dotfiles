@@ -3,16 +3,14 @@
 # Add -x flag to debug
 set -euo pipefail
 
-CURRENT_SYSTEM=$(nix eval --impure --raw --expr builtins.currentSystem)
-
 nix run home-manager/release-24.05 -- -b backup switch \
-    --flake ".#$CURRENT_SYSTEM.darth10"
+    --flake ".#$USER"
 
 # NixOS
 if [ -e /etc/NIXOS ]; then
     PWD=$(pwd)
     # Make sure changes to `hardware-configuration.nix` are staged or committed:
-    cp /etc/nixos/hardware-configuration.nix "$PWD/modules/nixos/hardware-configuration.nix"
+    cp /etc/nixos/hardware-configuration.nix "$PWD/modules/hosts/starf0rge/hardware-configuration.nix"
     sudo mv /etc/nixos /etc/nixos.orig
     sudo ln -s $PWD /etc/nixos
     # TODO show hosts, using: nix flake show --json | jq -r '"Hosts: \u001b[36m\(.nixosConfigurations | keys)"'

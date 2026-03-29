@@ -1,37 +1,35 @@
-{pkgs, ...}: {
-  home.packages = with pkgs; [
-    git
-    delta
-  ];
+{...}: {
+  flake.modules.homeManager.git = {pkgs, ...}: {
+    programs.git = {
+      enable = true;
 
-  programs.git = {
-    enable = true;
+      settings = {
+        user = {
+          name = "Akhil Wali";
+          email = "akhil.wali.10@gmail.com";
+        };
 
-    settings = {
-      user = {
-        name = "Akhil Wali";
-        email = "akhil.wali.10@gmail.com";
+        commit.gpgsign = true;
+        user.signingkey = "CBA0458B682A8544";
+
+        # Avoid using self.settings.username here:
+        github.user = "darth10";
+        merge.conflictstyle = "diff3";
+        diff.colorMoved = "default";
       };
-
-      commit.gpgsign = true;
-      user.signingkey = "CBA0458B682A8544";
-
-      github.user = "darth10";
-      merge.conflictstyle = "diff3";
-      diff.colorMoved = "default";
     };
-  };
 
-  programs.delta = {
-    enable = true;
-    enableGitIntegration = true;
+    programs.delta = {
+      enable = true;
+      enableGitIntegration = true;
 
-    options = {
-      feature = "theme";
-      navigate = true;
-      theme = {
-        dark = true;
-        syntax-theme = "Nord";
+      options = {
+        feature = "theme";
+        navigate = true;
+        theme = {
+          dark = true;
+          syntax-theme = "Nord";
+        };
       };
     };
   };

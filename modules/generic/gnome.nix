@@ -1,29 +1,49 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: {
-  options = {
-    desktop.gnome = {
-      enable = lib.mkEnableOption "Enable Gnome settings";
-    };
+{inputs, ...}: {
+  flake.modules.nixos.gnome = {pkgs, ...}: {
+    environment.gnome.excludePackages = with pkgs; [
+      atomix
+      epiphany
+      geary
+      gedit
+      gnome-characters
+      gnome-maps
+      gnome-music
+      gnome-photos
+      gnome-terminal
+      gnome-tour
+      hitori
+      iagno
+      tali
+      totem
+      usbutils
+    ];
   };
 
-  config = lib.mkIf config.desktop.gnome.enable {
-    home.packages = with pkgs; [
-      gnomeExtensions.vitals
-      gnomeExtensions.hue-lights
-      gnomeExtensions.tailscale-qs
-      gnomeExtensions.unite
-      gnomeExtensions.clipboard-indicator
-      gnomeExtensions.keyboard-modifiers-status
-      gnomeExtensions.another-window-session-manager
-    ];
+  flake.modules.homeManager.gnome = {
+    pkgs,
+    config,
+    ...
+  }: {
+    home = {
+      packages = with pkgs; [
+        gnomeExtensions.vitals
+        gnomeExtensions.hue-lights
+        gnomeExtensions.tailscale-qs
+        gnomeExtensions.unite
+        gnomeExtensions.clipboard-indicator
+        gnomeExtensions.keyboard-modifiers-status
+        gnomeExtensions.another-window-session-manager
+      ];
+
+      file."${config.xdg.configHome}/gtk-3.0/settings.ini".text = ''
+        [Settings]
+        gtk-application-prefer-dark-theme=1
+      '';
+    };
 
     # Generated using:
     # dconf dump / | , dconf2nix > dconf.nix
-    dconf.settings = with lib.hm.gvariant; {
+    dconf.settings = with inputs.home-manager.lib.hm.gvariant; {
       "apps/seahorse/listing" = {
         keyrings-selected = ["openssh:///home/darth10/.ssh"];
       };

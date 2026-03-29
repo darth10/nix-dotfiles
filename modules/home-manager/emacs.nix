@@ -1,62 +1,50 @@
 {
-  config,
-  lib,
-  pkgs,
+  self,
+  inputs,
   ...
 }: {
-  options = {
-    programs.doom-emacs = {
-      enable = lib.mkEnableOption "Enable Doom Emacs";
-      dotfilesDir = lib.mkOption {type = lib.types.str;};
+  flake.modules.homeManager.emacs = {
+    config,
+    pkgs,
+    ...
+  }: {
+    home = let
+      homeModulesDir = (self.settings.getDirs pkgs).homeModules;
+      configDir = config.xdg.configHome;
+      emacsConfigDir = "${configDir}/emacs";
+    in {
+      file = {
+        "${configDir}/doom".source = config.lib.file.mkOutOfStoreSymlink "${homeModulesDir}/doom";
+      };
+
+      activation.installDoomEmacs = inputs.home-manager.lib.hm.dag.entryAfter ["writeBoundary"] ''
+        if [[ ! -d ${emacsConfigDir} ]]; then
+          run echo "Cloning Doom Emacs into ${emacsConfigDir}"
+          run --quiet ${pkgs.git}/bin/git clone https://github.com/doomemacs/doomemacs.git ${emacsConfigDir}
+        fi
+      '';
+
+      packages = with pkgs; [
+        aspell
+        aspellDicts.en
+        python312Packages.grip
+      ];
+
+      shellAliases.e = "emacsclient -t -a=";
+
+      # These values are store in ~/.nix-profile/etc/profile.d/hm-session-vars.sh
+      # Sessions vars and path require logout for correct activation.
+      sessionVariables = {
+        DOOMDIR = "${configDir}/doom";
+        EMACSDIR = "${configDir}/emacs";
+        DOOMLOCALDIR = "${config.xdg.dataHome}/doom";
+        GRIPHOME = "${config.xdg.cacheHome}/grip";
+
+        EDITOR = "e";
+        VISUAL = "e";
+      };
+
+      sessionPath = ["${configDir}/emacs/bin"];
     };
   };
-
-  config = lib.mkMerge [
-    (lib.mkIf (!config.programs.doom-emacs.enable) {
-      home.sessionVariables = {
-        EDITOR = "vim";
-        VISUAL = "vim";
-      };
-    })
-    (lib.mkIf config.programs.doom-emacs.enable
-      {
-        home = let
-          dotfilesDir = config.programs.doom-emacs.dotfilesDir;
-          configDir = config.xdg.configHome;
-        in {
-          file = {
-            "${configDir}/doom".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/modules/doom";
-          };
-
-          activation.installDoomEmacs = lib.hm.dag.entryAfter ["writeBoundary"] ''
-            if [[ ! -d ${configDir}/emacs ]]; then
-              echo "Cloning Doom Emacs"
-              ${pkgs.git}/bin/git clone https://github.com/doomemacs/doomemacs.git ${configDir}/emacs/
-            fi
-          '';
-
-          packages = with pkgs; [
-            aspell
-            aspellDicts.en
-            python312Packages.grip
-          ];
-
-          shellAliases.e = "emacsclient -t -a=";
-
-          # These values are store in ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-          # Sessions vars and path require logout for correct activation.
-          sessionVariables = {
-            DOOMDIR = "${configDir}/doom";
-            EMACSDIR = "${configDir}/emacs";
-            DOOMLOCALDIR = "${config.xdg.dataHome}/doom";
-            GRIPHOME = "${config.xdg.cacheHome}/grip";
-
-            EDITOR = "e";
-            VISUAL = "e";
-          };
-
-          sessionPath = ["${configDir}/emacs/bin"];
-        };
-      })
-  ];
 }

@@ -1,39 +1,22 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}: {
-  options = {
-    programs.zsh.dotfilesDir = lib.mkOption {type = lib.types.str;};
-  };
-
-  config = {
+{self, ...}: {
+  flake.modules.homeManager.shell = {
+    pkgs,
+    config,
+    ...
+  }: {
     home = let
-      dotfilesDir = config.programs.zsh.dotfilesDir;
+      homeModulesDir = (self.settings.getDirs pkgs).homeModules;
     in {
       packages = with pkgs; [
         fzf
       ];
 
       file = {
-        ".config/starship.toml".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/modules/starship/starship.toml";
+        ".config/starship.toml".source = config.lib.file.mkOutOfStoreSymlink "${homeModulesDir}/starship/starship.toml";
       };
 
       shellAliases = {
         manixf = ''manix "" | grep '^# ' | sed 's/^# \(.*\) (.*/\1/;s/ (.*//;s/^# //' | fzf --preview="manix '{}'" | xargs manix'';
-
-        nho = "nh os";
-        nhob = "nh os build";
-        nhos = "nh os switch --ask";
-
-        nhh = "nh home";
-        nhhc = ''echo "$(nix eval --impure --raw --expr builtins.currentSystem).darth10"'';
-        nhhb = "nh home build -c $(nhhc)";
-        nhhs = "nh home switch -b backup --ask -c $(nhhc)";
-        nhhg = "echo 'generation:' $(home-manager generations | head -n 1 | cut -d' ' -f 5,6,7)";
-
-        icat = "kitty icat";
         pnoise = "play -n synth pinknoise";
         wnoise = "play -n synth pinknoise";
       };

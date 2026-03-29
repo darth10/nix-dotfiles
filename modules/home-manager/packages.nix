@@ -1,28 +1,27 @@
-{
-  pkgs,
-  lib,
-  ...
-}: let
-  inherit (lib) optionals;
-in {
-  home.packages = with pkgs;
-    [
-      comma
-      manix
-      nix-search-cli
-      vim
-      gnupg
-      htop
-      rlwrap
-      kubectl
+{...}: {
+  flake.modules.homeManager.packages = {
+    pkgs,
+    lib,
+    ...
+  }: let
+    inherit (lib) optionals;
+  in {
+    home.packages = with pkgs;
+      [
+        comma
+        manix
+        nix-search-cli
+        vim
+        rlwrap
+        kubectl
 
-      fd
-      (ripgrep.override {withPCRE2 = true;})
-      jq
+        fd
+        (ripgrep.override {withPCRE2 = true;})
+        jq
 
-      alejandra
-    ]
-    ++ (import ../../lib/nh.nix {inherit pkgs;})
-    ++ optionals pkgs.stdenv.isLinux []
-    ++ optionals pkgs.stdenv.isDarwin [];
+        alejandra
+      ]
+      ++ optionals pkgs.stdenv.isLinux []
+      ++ optionals pkgs.stdenv.isDarwin [];
+  };
 }

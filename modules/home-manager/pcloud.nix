@@ -1,16 +1,10 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: {
-  options = {
-    services.pcloud = {
-      enable = lib.mkEnableOption "Enable pCloud";
-    };
-  };
-
-  config = lib.mkIf config.services.pcloud.enable {
+{...}: {
+  flake.modules.homeManager.pcloud = {
+    config,
+    lib,
+    pkgs,
+    ...
+  }: {
     home = {
       packages = [pkgs.pcloud];
 

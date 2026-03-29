@@ -1,6 +1,6 @@
-{pkgs, ...}: {
-  environment.systemPackages = with pkgs;
-    [
+{...}: {
+  flake.modules.nixos.base = {pkgs, ...}: {
+    environment.systemPackages = with pkgs; [
       cmake
       dig.dnsutils
       direnv
@@ -63,24 +63,6 @@
       tt
       openra
       openttd
-    ]
-    ++ (import ../../lib/nh.nix {inherit pkgs;});
-
-  environment.gnome.excludePackages = with pkgs; [
-    atomix
-    epiphany
-    geary
-    gedit
-    gnome-characters
-    gnome-maps
-    gnome-music
-    gnome-photos
-    gnome-terminal
-    gnome-tour
-    hitori
-    iagno
-    tali
-    totem
-    usbutils
-  ];
+    ];
+  };
 }
