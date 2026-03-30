@@ -14,6 +14,7 @@
       # vdhcoapp
       kitty
       libtool
+      lshw
       pssh
       sox
       spotify
