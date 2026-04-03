@@ -159,6 +159,7 @@
           inline_height = 15;
           style = "compact";
           keymap_mode = "vim-insert";
+          logs.dir = "${config.xdg.dataHome}/atuin/logs";
         };
       };
 
