@@ -26,7 +26,7 @@
   cd ~/.nix-dotfiles
   ./install.sh
   ```
-- For VPN, download and import [OpenVPN configuration from PIA][openvpn-pia].
+- Ensure that your `$HOME` directory is clean using [xdg-ninja][xdg-ninja].
 
 ## Remote deployment
 
@@ -37,4 +37,4 @@ nix run nixpkgs#deploy-rs -- .#maelstrom.home-manager --hostname <HOSTNAME>
 You can use the `--skip-checks` option to speed up deployment.
 
 [nix-installer]: https://github.com/DeterminateSystems/nix-installer
-[openvpn-pia]: https://www.privateinternetaccess.com/openvpn/openvpn.zip
+[xdg-ninja]: https://github.com/b3nj5m1n/xdg-ninja 
