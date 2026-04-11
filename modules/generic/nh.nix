@@ -11,7 +11,19 @@
     };
   };
 in {
-  flake.modules.nixos.nh = nh;
+  flake.modules.nixos.nh = {
+    pkgs,
+    config,
+    ...
+  }:
+    lib.mkMerge [
+      nh
+      {
+        environment.sessionVariables = {
+          NH_OS_FLAKE = "${(self.settings.getDirs pkgs).dotfiles}#${config.networking.hostName}";
+        };
+      }
+    ];
 
   flake.modules.homeManager.nh = {pkgs, ...}:
     lib.mkMerge [

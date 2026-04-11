@@ -10,14 +10,10 @@ nix run home-manager/release-24.05 -- -b backup switch \
 if [ -e /etc/NIXOS ]; then
     PWD=$(pwd)
     # Make sure changes to `hardware-configuration.nix` are staged or committed:
-    cp /etc/nixos/hardware-configuration.nix "$PWD/modules/hosts/starf0rge/hardware-configuration.nix"
+    cp /etc/nixos/hardware-configuration.nix "$PWD/modules/hosts/$HOST/hardware-configuration.nix"
     sudo mv /etc/nixos /etc/nixos.orig
     sudo ln -s $PWD /etc/nixos
-    # TODO show hosts, using: nix flake show --json | jq -r '"Hosts: \u001b[36m\(.nixosConfigurations | keys)"'
-    # also check more than 1 of: nix flake show --json | jq -r ".nixosConfigurations | keys | length"
-    # and read host into variable using: read -p "Host: " NIX_OS_HOST
-    # and to pass to this command as: nixos-rebuild switch --flake .#$NIX_OS_HOST":
-    sudo nixos-rebuild switch --flake .#starf0rge
+    sudo nixos-rebuild switch --flake ".#$HOST"
 fi
 
 # Other Linux
