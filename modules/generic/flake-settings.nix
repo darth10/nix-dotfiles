@@ -10,7 +10,7 @@
     };
     editor = lib.mkOption {
       type = lib.types.str;
-      default = "emacs";
+      default = "vim";
     };
   };
 
