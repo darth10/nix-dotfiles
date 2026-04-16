@@ -21,6 +21,7 @@
         jq
 
         alejandra
+        rclone
       ]
       ++ optionals pkgs.stdenv.isLinux []
       ++ optionals pkgs.stdenv.isDarwin [];
