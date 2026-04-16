@@ -28,7 +28,11 @@
 
       sessionVariables = {
         SHOW_AWS_PROMPT = "false";
+        ZSH_LLM_CLI_TOOL = "claude";
+        ZSH_LLM_CLAUDE_MODEL = "haiku";
       };
+
+      sessionPath = ["${(self.settings.getDirs pkgs).home}/.local/bin"];
     };
 
     programs = {
@@ -83,9 +87,13 @@
 
           zi depth"1" wait"1" lucid blockf for \
               atload"zicompinit; zicdreplay;\
+                     command -v bb &> /dev/null && source <(bb org.babashka.cli/completions snippet --shell zsh); \
                      command -v docker &> /dev/null && source <(docker completion zsh); \
                      command -v mise &> /dev/null && source <(mise completion zsh)" \
               light-mode zsh-users/zsh-completions
+
+          zi ice wait lucid atload'bindkey "^G" llm_suggest; bindkey "^E" llm_explain'
+          zi light championswimmer/zsh-llm-assist
 
           ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BEAM
           ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BLOCK
