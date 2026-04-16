@@ -21,6 +21,7 @@
         jq
 
         alejandra
+        rclone
       ]
       ++ optionals pkgs.stdenv.hostPlatform.isLinux []
       ++ optionals pkgs.stdenv.hostPlatform.isDarwin [];
