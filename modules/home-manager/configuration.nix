@@ -19,13 +19,13 @@ in {
       modules = [
         self.modules.homeManager.${username}
         self.modules.homeManager.${self.settings.editor}
-        self.modules.homeManager.clojure
-        self.modules.homeManager.gnome
-        self.modules.homeManager.kitty
-        self.modules.homeManager.lsp
+        # self.modules.homeManager.lsp
+        # self.modules.homeManager.clojure
+        # self.modules.homeManager.gnome
+        # self.modules.homeManager.kitty
         self.modules.homeManager.npm
         self.modules.homeManager.pass
-        self.modules.homeManager.pcloud
+        # self.modules.homeManager.pcloud
       ];
     };
   };
@@ -38,7 +38,7 @@ in {
         git
         gnupg
         htop
-        mise
+        # mise
         nh
         nixSettings
         packages
