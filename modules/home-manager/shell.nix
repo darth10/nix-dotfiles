@@ -29,6 +29,8 @@
       sessionVariables = {
         SHOW_AWS_PROMPT = "false";
       };
+
+      sessionPath = ["${(self.settings.getDirs pkgs).home}/.local/bin"];
     };
 
     programs = {
@@ -83,6 +85,7 @@
 
           zi depth"1" wait"1" lucid blockf for \
               atload"zicompinit; zicdreplay;\
+                     command -v bb &> /dev/null && source <(bb org.babashka.cli/completions snippet --shell zsh); \
                      command -v docker &> /dev/null && source <(docker completion zsh); \
                      command -v mise &> /dev/null && source <(mise completion zsh)" \
               light-mode zsh-users/zsh-completions
