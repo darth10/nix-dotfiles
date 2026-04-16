@@ -6,6 +6,8 @@
       globalConfig = {
         tools = {
           usage = "latest";
+          babashka = "latest";
+          node = "lts";
         };
         settings = {
           experimental = true;
