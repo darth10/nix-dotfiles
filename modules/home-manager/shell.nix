@@ -24,6 +24,8 @@
       sessionVariables = {
         SHOW_AWS_PROMPT = "false";
       };
+
+      sessionPath = ["${(self.settings.getDirs pkgs).home}/.local/bin"];
     };
 
     programs = {
