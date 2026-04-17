@@ -11,18 +11,12 @@
       google-chrome
       gnumake
       guile
-      # vdhcoapp
       kitty
       libtool
       lshw
       pssh
       sox
-      spotify
-      transmission_4
-      transmission_4-gtk
-      usbimager
       unzip
-      veracrypt
       vlc
       wl-clipboard
 
@@ -39,30 +33,9 @@
         ]))
       pass
 
-      # LaTeX
-      (texlive.combine
-        {
-          inherit
-            (texlive)
-            scheme-small
-            amsmath
-            minted
-            isodate
-            textpos
-            titlesec
-            ;
-        })
-
       # LSP servers
       bash-language-server
-      clojure-lsp
       nil
-      texlab
-
-      # Games
-      tt
-      openra
-      openttd
     ];
   };
 }

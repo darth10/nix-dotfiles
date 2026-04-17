@@ -9,21 +9,6 @@
     security.rtkit.enable = true;
     networking.networkmanager.enable = true;
 
-    boot = {
-      kernelPackages = pkgs.linuxPackages_latest;
-
-      loader = {
-        grub.enable = true;
-        grub.device = "/dev/sda";
-        grub.useOSProber = true;
-        systemd-boot.configurationLimit = 10;
-      };
-
-      binfmt.emulatedSystems = ["aarch64-linux"];
-    };
-
-    nix.settings.extra-platforms = config.boot.binfmt.emulatedSystems;
-
     users.users.${self.settings.username} = {
       isNormalUser = true;
       description = self.settings.username;
@@ -39,6 +24,7 @@
     services = {
       xserver.enable = true;
       desktopManager.gnome.enable = true;
+      displayManager.gdm.enable = true;
       pulseaudio.enable = false;
 
       pipewire = {

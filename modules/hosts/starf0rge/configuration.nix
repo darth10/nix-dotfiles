@@ -13,6 +13,7 @@ in {
         keyd
         nh
         nixSettings
+        nz
         stateVersion
         tailscale
         virtualisation
@@ -23,36 +24,32 @@ in {
       ];
   };
 
-  flake.modules.nixos.${hostname} = {pkgs, ...}: {
-    time.timeZone = "Pacific/Auckland";
+  flake.modules.nixos.${hostname} = {
+    pkgs,
+    config,
+    ...
+  }: {
     networking.hostName = hostname;
 
-    services = {
-      xserver.xkb = {
-        layout = "nz";
-        variant = "";
+    boot = {
+      kernelPackages = pkgs.linuxPackages_latest;
+
+      loader = {
+        grub = {
+          enable = true;
+          device = "/dev/sda";
+          useOSProber = true;
+        };
       };
 
-      displayManager.gdm.enable = true;
-
-      printing.enable = true;
-      printing.drivers = [pkgs.cnijfilter2];
+      binfmt.emulatedSystems = ["aarch64-linux"];
     };
 
-    i18n = {
-      defaultLocale = "en_NZ.UTF-8";
+    nix.settings.extra-platforms = config.boot.binfmt.emulatedSystems;
 
-      extraLocaleSettings = {
-        LC_ADDRESS = "en_NZ.UTF-8";
-        LC_IDENTIFICATION = "en_NZ.UTF-8";
-        LC_MEASUREMENT = "en_NZ.UTF-8";
-        LC_MONETARY = "en_NZ.UTF-8";
-        LC_NAME = "en_NZ.UTF-8";
-        LC_NUMERIC = "en_NZ.UTF-8";
-        LC_PAPER = "en_NZ.UTF-8";
-        LC_TELEPHONE = "en_NZ.UTF-8";
-        LC_TIME = "en_NZ.UTF-8";
-      };
+    services = {
+      printing.enable = true;
+      printing.drivers = [pkgs.cnijfilter2];
     };
   };
 }
