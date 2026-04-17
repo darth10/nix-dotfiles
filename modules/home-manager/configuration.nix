@@ -47,17 +47,4 @@ in {
       ]
       ++ [inputs.nix-index-database.homeModules.nix-index];
   };
-
-  flake.modules.homeManager.base = {pkgs, ...}: {
-    nix.package = pkgs.nix;
-    xdg.enable = true;
-
-    programs.home-manager.enable = true;
-
-    home = {
-      username = username;
-      homeDirectory = (self.settings.getDirs pkgs).home;
-      preferXdgDirectories = true;
-    };
-  };
 }
