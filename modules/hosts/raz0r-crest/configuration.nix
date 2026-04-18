@@ -58,6 +58,7 @@ in {
       gparted
 
       gimp
+      zoom-us
     ];
   };
 }
