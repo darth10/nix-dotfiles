@@ -149,8 +149,8 @@
       "org/gnome/desktop/background" = {
         color-shading-type = "solid";
         picture-options = "zoom";
-        picture-uri = "file:///home/darth10/.local/share/backgrounds/nix-wallpaper-nineish-dark-gray.png";
-        picture-uri-dark = "file:///home/darth10/.local/share/backgrounds/nix-wallpaper-nineish-dark-gray.png";
+        picture-uri = "file:///home/darth10/.local/share/backgrounds/2026-04-14-00-14-15-nix-wallpaper-watersplash.png";
+        picture-uri-dark = "file:///home/darth10/.local/share/backgrounds/2026-04-14-00-14-15-nix-wallpaper-watersplash.png";
         primary-color = "#000000000000";
         secondary-color = "#000000000000";
       };
@@ -259,7 +259,7 @@
       "org/gnome/desktop/screensaver" = {
         color-shading-type = "solid";
         picture-options = "zoom";
-        picture-uri = "file:///home/darth10/.local/share/backgrounds/nix-wallpaper-nineish-dark-gray.png";
+        picture-uri = "file:///home/darth10/.local/share/backgrounds/2026-04-14-00-14-15-nix-wallpaper-watersplash.png";
         primary-color = "#000000000000";
         secondary-color = "#000000000000";
       };
@@ -418,7 +418,7 @@
         disable-extension-version-validation = true;
         disabled-extensions = ["workspace-indicator@gnome-shell-extensions.gcampax.github.com" "places-menu@gnome-shell-extensions.gcampax.github.com"];
         enabled-extensions = ["smart-home@chlumskyvaclav.gmail.com" "unite@hardpixel.eu" "keyboard_modifiers_status@sneetsher" "spotify-controller@koolskateguy89" "another-window-session-manager@gmail.com" "tailscale@joaophi.github.com" "Vitals@CoreCoding.com" "clipboard-indicator@tudmotu.com"];
-        favorite-apps = ["emacsclient.desktop" "google-chrome.desktop" "firefox.desktop" "spotify.desktop" "org.gnome.Nautilus.desktop" "kitty.desktop"];
+        favorite-apps = ["emacsclient.desktop" "chromium-browser.desktop" "firefox.desktop" "org.gnome.Nautilus.desktop" "kitty.desktop"];
         last-selected-power-profile = "power-saver";
         welcome-dialog-last-shown-version = "46.2";
       };
@@ -466,7 +466,7 @@
         alphabetize = true;
         fixed-widths = true;
         hide-icons = false;
-        hot-sensors = ["_temperature_acpi_thermal zone_" "_memory_usage_"];
+        hot-sensors = ["_temperature_processor_0_" "_memory_usage_"];
         icon-style = 0;
         menu-centered = false;
         position-in-panel = 0;
