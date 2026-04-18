@@ -10,7 +10,7 @@
     [Determinate Nix installer][nix-installer]:
 
     ```sh
-    curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+    curl -fsSL https://install.determinate.systems/nix | sh -s -- install
     ```
   - On NixOS, add the following to `/etc/nixos/configuration.nix` and run `sudo nixos-rebuild switch`:
     ```nix
@@ -30,7 +30,19 @@
 
 ## Remote deployment
 
-Use the `maelstrom` flake:
+- Ensure that:
+  - `nix-store` is available over SSH. On a fresh Nix installation, run:
+     ``` sh
+     % cat >> ~/.zshenv
+     PATH=$PATH:/nix/var/nix/profiles/default/bin
+     ```
+  - Nix config (`/etc/nix/nix.custom.conf` or `/etc/nix/nix.conf`) has:
+    ```conf
+    trusted-users = @sudo
+    use-xdg-base-directories = true
+    ```
+
+- Use the `maelstrom.home-manager` flake output:
 ``` sh
 nix run nixpkgs#deploy-rs -- .#maelstrom.home-manager --hostname <HOSTNAME>
 ```
