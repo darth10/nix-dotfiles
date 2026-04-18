@@ -10,12 +10,12 @@ in {
       [
         base
         gnome
-        # keyd
+        keyd
         nh
         nixSettings
         nz
         stateVersion
-        # tailscale
+        tailscale
         # virtualisation
       ]
       ++ [
