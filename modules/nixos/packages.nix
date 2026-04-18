@@ -8,7 +8,6 @@
       fastfetch
       foliate
       gcc
-      google-chrome
       gnumake
       guile
       kitty
