@@ -41,7 +41,7 @@ in {
     };
 
     hardware.apple-t2 = {
-      kernelChannel = "latest";
+      kernelChannel = "stable";
       firmware.enable = true;
     };
 
