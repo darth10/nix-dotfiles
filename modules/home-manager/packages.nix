@@ -11,6 +11,7 @@
         comma
         manix
         nix-search-cli
+        nix-tree
         vim
         rlwrap
         kubectl
