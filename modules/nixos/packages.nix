@@ -15,6 +15,7 @@
       lshw
       pssh
       sox
+      ungoogled-chromium
       unzip
       vlc
       wl-clipboard

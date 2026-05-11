@@ -1,7 +1,6 @@
 {...}: {
   flake.modules.nixos.starf0rge = {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
-      google-chrome
       spotify
       transmission_4
       transmission_4-gtk
