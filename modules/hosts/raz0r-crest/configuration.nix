@@ -51,15 +51,5 @@ in {
     };
 
     nix.settings.trusted-public-keys = ["starf0rge-1:Bdx7tc1Tur6SohuV/LV0JmkSItTX/fD0ZKKNCGx/3PE="];
-
-    ### TODO move to ./packages.nix
-    environment.systemPackages = with pkgs; [
-      vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-      wget # TODO remove
-      tree # TODO remove
-      gparted
-
-      gimp
-    ];
   };
 }
