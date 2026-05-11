@@ -15,7 +15,7 @@
       lshw
       pssh
       sox
-      ungoogled-chromium
+      (ungoogled-chromium.override {enableWideVine = true;})
       unzip
       vlc
       wl-clipboard
