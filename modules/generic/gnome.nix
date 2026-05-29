@@ -27,7 +27,7 @@
     home = {
       packages = with pkgs; [
         gnomeExtensions.vitals
-        gnomeExtensions.hue-lights
+        gnomeExtensions.smart-home
         gnomeExtensions.tailscale-qs
         gnomeExtensions.unite
         gnomeExtensions.clipboard-indicator
@@ -417,7 +417,7 @@
         command-history = ["virt-manager" "emacs"];
         disable-extension-version-validation = true;
         disabled-extensions = ["workspace-indicator@gnome-shell-extensions.gcampax.github.com" "places-menu@gnome-shell-extensions.gcampax.github.com"];
-        enabled-extensions = ["hue-lights@chlumskyvaclav.gmail.com" "unite@hardpixel.eu" "keyboard_modifiers_status@sneetsher" "spotify-controller@koolskateguy89" "another-window-session-manager@gmail.com" "tailscale@joaophi.github.com" "Vitals@CoreCoding.com" "clipboard-indicator@tudmotu.com"];
+        enabled-extensions = ["smart-home@chlumskyvaclav.gmail.com" "unite@hardpixel.eu" "keyboard_modifiers_status@sneetsher" "spotify-controller@koolskateguy89" "another-window-session-manager@gmail.com" "tailscale@joaophi.github.com" "Vitals@CoreCoding.com" "clipboard-indicator@tudmotu.com"];
         favorite-apps = ["emacsclient.desktop" "google-chrome.desktop" "firefox.desktop" "spotify.desktop" "org.gnome.Nautilus.desktop" "kitty.desktop"];
         last-selected-power-profile = "power-saver";
         welcome-dialog-last-shown-version = "46.2";
@@ -442,14 +442,6 @@
         preview-size = 10;
         toggle-menu = ["<Shift><Super>c"];
         topbar-preview-size = 15;
-      };
-
-      "org/gnome/shell/extensions/hue-lights" = {
-        connection-timeout = 2;
-        connection-timeout-sb = 8;
-        icon-pack = "bright";
-        indicator-position = "right";
-        show-scenes = true;
       };
 
       "org/gnome/shell/extensions/unite" = {
