@@ -19,6 +19,8 @@
       };
     };
 
+    home.packages = [pkgs.git-lfs];
+
     programs.delta = {
       enable = true;
       enableGitIntegration = true;
