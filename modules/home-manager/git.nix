@@ -2,6 +2,7 @@
   flake.modules.homeManager.git = {pkgs, ...}: {
     programs.git = {
       enable = true;
+      lfs.enable = true;
 
       settings = {
         user = {
@@ -18,8 +19,6 @@
         diff.colorMoved = "default";
       };
     };
-
-    home.packages = [pkgs.git-lfs];
 
     programs.delta = {
       enable = true;
