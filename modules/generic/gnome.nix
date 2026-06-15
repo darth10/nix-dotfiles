@@ -70,6 +70,11 @@
         maximized = true;
       };
 
+      "desktop/ibus/general" = {
+        preload-engines = ["xkb:nz::eng"];
+        version = "1.5.33";
+      };
+
       "org/gnome/Console" = {
         custom-font = "Consolas 16";
         last-window-maximised = true;
@@ -83,6 +88,10 @@
 
       "org/gnome/Loupe" = {
         show-properties = true;
+      };
+
+      "org/gnome/Showtime/State" = {
+        is-maximized = false;
       };
 
       "org/gnome/TextEditor" = {
@@ -179,7 +188,12 @@
       };
 
       "org/gnome/desktop/notifications" = {
-        application-children = ["gnome-power-panel" "org-gnome-console" "firefox" "kitty" "veracrypt" "org-gnome-nautilus" "org-gnome-settings" "emacsclient" "spotify" "google-chrome" "transmission-gtk" "org-gnome-characters" "gnome-printers-panel" "org-gnome-loupe" "org-gnome-baobab" "pcloud"];
+        application-children = ["gnome-power-panel" "org-gnome-console" "firefox" "kitty" "veracrypt" "org-gnome-nautilus" "org-gnome-settings" "emacsclient" "spotify" "google-chrome" "transmission-gtk" "org-gnome-characters" "gnome-printers-panel" "org-gnome-loupe" "org-gnome-baobab" "pcloud" "vlc" "chromium-browser"];
+        show-banners = true;
+      };
+
+      "org/gnome/desktop/notifications/application/chromium-browser" = {
+        application-id = "chromium-browser.desktop";
       };
 
       "org/gnome/desktop/notifications/application/emacsclient" = {
@@ -188,6 +202,10 @@
 
       "org/gnome/desktop/notifications/application/firefox" = {
         application-id = "firefox.desktop";
+      };
+
+      "org/gnome/desktop/notifications/application/gnome-about-panel" = {
+        application-id = "gnome-about-panel.desktop";
       };
 
       "org/gnome/desktop/notifications/application/gnome-power-panel" = {
@@ -230,6 +248,10 @@
         application-id = "org.gnome.Settings.desktop";
       };
 
+      "org/gnome/desktop/notifications/application/org-gnome-showtime" = {
+        application-id = "org.gnome.Showtime.desktop";
+      };
+
       "org/gnome/desktop/notifications/application/pcloud" = {
         application-id = "pcloud.desktop";
       };
@@ -246,9 +268,13 @@
         application-id = "veracrypt.desktop";
       };
 
+      "org/gnome/desktop/notifications/application/vlc" = {
+        application-id = "vlc.desktop";
+      };
+
       "org/gnome/desktop/peripherals/mouse" = {
         natural-scroll = false;
-        speed = -0.33834586466165417;
+        speed = -0.338346;
       };
 
       "org/gnome/desktop/peripherals/touchpad" = {
@@ -305,7 +331,7 @@
         sidebar-page = "thumbnails";
         sidebar-size = 132;
         sizing-mode = "automatic";
-        window-ratio = mkTuple [1.0079358146473232 0.7126821793821045];
+        window-ratio = mkTuple [1.007936 0.712682];
       };
 
       "org/gnome/evolution-data-server" = {
@@ -353,6 +379,10 @@
         restore-shortcuts = [];
       };
 
+      "org/gnome/nautilus/list-view" = {
+        default-zoom-level = "medium";
+      };
+
       "org/gnome/nautilus/preferences" = {
         default-folder-viewer = "list-view";
         migrated-gtk-settings = true;
@@ -383,6 +413,10 @@
         last-folder-path = "/home/darth10/pCloudDrive/code";
       };
 
+      "org/gnome/portal/filechooser/org/chromium/Chromium" = {
+        last-folder-path = "/home/darth10/Downloads";
+      };
+
       "org/gnome/portal/filechooser/org/gnome/Settings" = {
         last-folder-path = "/home/darth10/Downloads";
       };
@@ -391,6 +425,10 @@
         night-light-enabled = true;
         night-light-schedule-automatic = false;
         night-light-temperature = mkUint32 3700;
+      };
+
+      "org/gnome/settings-daemon/plugins/housekeeping" = {
+        donation-reminder-last-shown = mkInt64 1764117895971884;
       };
 
       "org/gnome/settings-daemon/plugins/media-keys" = {
@@ -417,8 +455,8 @@
         command-history = ["virt-manager" "emacs"];
         disable-extension-version-validation = true;
         disabled-extensions = ["workspace-indicator@gnome-shell-extensions.gcampax.github.com" "places-menu@gnome-shell-extensions.gcampax.github.com"];
-        enabled-extensions = ["smart-home@chlumskyvaclav.gmail.com" "unite@hardpixel.eu" "keyboard_modifiers_status@sneetsher" "spotify-controller@koolskateguy89" "another-window-session-manager@gmail.com" "tailscale@joaophi.github.com" "Vitals@CoreCoding.com" "clipboard-indicator@tudmotu.com"];
-        favorite-apps = ["emacsclient.desktop" "google-chrome.desktop" "firefox.desktop" "spotify.desktop" "org.gnome.Nautilus.desktop" "kitty.desktop"];
+        enabled-extensions = ["smart-home@chlumskyvaclav.gmail.com" "unite@hardpixel.eu" "keyboard_modifiers_status@sneetsher" "spotify-controller@koolskateguy89" "another-window-session-manager@gmail.com" "tailscale@joaophi.github.com" "Vitals@CoreCoding.com" "clipboard-indicator@tudmotu.com" "tailscale-gnome-qs@tailscale-qs.github.io"];
+        favorite-apps = ["emacsclient.desktop" "chromium-browser.desktop" "firefox.desktop" "spotify.desktop" "org.gnome.Nautilus.desktop" "kitty.desktop"];
         last-selected-power-profile = "power-saver";
         welcome-dialog-last-shown-version = "46.2";
       };
@@ -431,9 +469,10 @@
         enable-close-by-rules = false;
         enable-restore-previous-session = false;
         enable-save-session-notification = false;
+        restore-at-startup-without-asking = false;
         restore-previous-delay = 3;
         show-indicator = true;
-        windows-mapping = "[[\"Unknown\",{\"W56 ([untitled])\":{\"windowTitle\":null,\"xid\":\"W56 ([untitled])\",\"windowStableSequence\":57}}],[\"/run/current-system/sw/share/applications/org.gnome.Settings.desktop\",{\"W2 ([untitled])\":{\"windowTitle\":null,\"xid\":\"W2 ([untitled])\",\"windowStableSequence\":3}}],[\"/run/current-system/sw/share/applications/emacsclient.desktop\",{\"0xe041d7 ([untitled])\":{\"windowTitle\":null,\"xid\":\"0xe041d7 ([untitled])\",\"windowStableSequence\":18}}],[\"/run/current-system/sw/share/applications/google-chrome.desktop\",{\"0x100007c ()\":{\"windowTitle\":\"\",\"xid\":\"0x100007c ()\",\"windowStableSequence\":47}}],[\"/nix/store/qcajaw2qc9kk13fc4jqxgik64da1v0ig-gnome-shell-47.4/share/applications/org.gnome.Shell.Extensions.desktop\",{\"W61 ([untitled])\":{\"windowTitle\":null,\"xid\":\"W61 ([untitled])\",\"windowStableSequence\":62}}],[\"/run/current-system/sw/share/applications/org.gnome.Nautilus.desktop\",{\"W16 ([untitled])\":{\"windowTitle\":null,\"xid\":\"W16 ([untitled])\",\"windowStableSequence\":17}}],[\"/run/current-system/sw/share/applications/pcloud.desktop\",{\"0xc00008 (pcloud)\":{\"windowTitle\":\"pcloud\",\"xid\":\"0xc00008 (pcloud)\",\"windowStableSequence\":30}}],[\"/run/current-system/sw/share/applications/veracrypt.desktop\",{\"W47 ([untitled])\":{\"windowTitle\":null,\"xid\":\"W47 ([untitled])\",\"windowStableSequence\":48}}],[\"/run/current-system/sw/share/applications/vlc.desktop\",{\"0x1a0004b (vlc)\":{\"windowTitle\":\"vlc\",\"xid\":\"0x1a0004b (vlc)\",\"windowStableSequence\":55}}]]";
+        windows-mapping = "[[\"Unknown\",{\"W150 ([untitled])\":{\"windowTitle\":null,\"xid\":\"W150 ([untitled])\",\"windowStableSequence\":151}}],[\"/run/current-system/sw/share/applications/org.gnome.Settings.desktop\",{\"W2 ([untitled])\":{\"windowTitle\":null,\"xid\":\"W2 ([untitled])\",\"windowStableSequence\":3}}],[\"/run/current-system/sw/share/applications/emacsclient.desktop\",{\"0xc00151 (GNU Emacs at starf0rge)\":{\"windowTitle\":\"GNU Emacs at starf0rge\",\"xid\":\"0xc00151 (GNU Emacs at starf0rge)\",\"windowStableSequence\":148}}],[\"/run/current-system/sw/share/applications/google-chrome.desktop\",{\"0x100007c ()\":{\"windowTitle\":\"\",\"xid\":\"0x100007c ()\",\"windowStableSequence\":47}}],[\"/nix/store/qcajaw2qc9kk13fc4jqxgik64da1v0ig-gnome-shell-47.4/share/applications/org.gnome.Shell.Extensions.desktop\",{\"W61 ([untitled])\":{\"windowTitle\":null,\"xid\":\"W61 ([untitled])\",\"windowStableSequence\":62}}],[\"/run/current-system/sw/share/applications/org.gnome.Nautilus.desktop\",{\"W140 ([untitled])\":{\"windowTitle\":null,\"xid\":\"W140 ([untitled])\",\"windowStableSequence\":141}}],[\"/run/current-system/sw/share/applications/pcloud.desktop\",{\"0xc00008 (pcloud)\":{\"windowTitle\":\"pcloud\",\"xid\":\"0xc00008 (pcloud)\",\"windowStableSequence\":30}}],[\"/run/current-system/sw/share/applications/veracrypt.desktop\",{\"W136 ([untitled])\":{\"windowTitle\":null,\"xid\":\"W136 ([untitled])\",\"windowStableSequence\":137}}],[\"/run/current-system/sw/share/applications/vlc.desktop\",{\"0xe0005f (vlc)\":{\"windowTitle\":\"vlc\",\"xid\":\"0xe0005f (vlc)\",\"windowStableSequence\":147}}],[\"/run/current-system/sw/share/applications/chromium-browser.desktop\",{\"W77 ([untitled])\":{\"windowTitle\":null,\"xid\":\"W77 ([untitled])\",\"windowStableSequence\":78}}]]";
       };
 
       "org/gnome/shell/extensions/clipboard-indicator" = {
