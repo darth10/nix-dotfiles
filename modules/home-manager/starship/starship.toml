@@ -32,7 +32,7 @@ format = '[$hostname:]($style)'
 
 [nix_shell]
 format = '[$symbol $state]($style)'
-symbol = '❄️'
+symbol = '❄'
 impure_msg = '+ '
 pure_msg = ''
 style = 'blue'
