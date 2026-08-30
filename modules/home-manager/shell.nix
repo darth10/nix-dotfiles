@@ -16,6 +16,7 @@
       };
 
       shellAliases = {
+        ssh = "kitten ssh";
         manixf = ''manix "" | grep '^# ' | sed 's/^# \(.*\) (.*/\1/;s/ (.*//;s/^# //' | fzf --preview="manix '{}'" | xargs manix'';
         pnoise = "play -n synth pinknoise";
         wnoise = "play -n synth pinknoise";
