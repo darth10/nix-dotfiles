@@ -8,7 +8,6 @@
       gnome-characters
       gnome-maps
       gnome-music
-      gnome-photos
       gnome-terminal
       gnome-tour
       hitori
