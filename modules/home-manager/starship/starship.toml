@@ -57,3 +57,8 @@ format = '[$symbol($version )]($style)'
 
 [aws]
 format = '[($profile):$region (\[$duration\] )]($style)'
+
+[bun]
+symbol = '🍞 '
+format = '[$symbol($version )]($style)'
+style = 'green'
