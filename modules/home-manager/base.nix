@@ -1,6 +1,5 @@
 {self, ...}: {
   flake.modules.homeManager.base = {pkgs, ...}: {
-    nix.package = pkgs.nix;
     xdg.enable = true;
 
     programs.home-manager.enable = true;

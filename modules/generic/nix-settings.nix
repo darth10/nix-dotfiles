@@ -1,4 +1,4 @@
-{...}: let
+{lib, ...}: let
   settings = {
     nix.settings = {
       experimental-features = ["nix-command" "flakes"];
@@ -9,5 +9,11 @@
   };
 in {
   flake.modules.nixos.nixSettings = settings;
-  flake.modules.homeManager.nixSettings = settings;
+  flake.modules.homeManager.nixSettings = {pkgs, ...}:
+    lib.mkMerge [
+      settings
+      {
+        nix.package = pkgs.nix;
+      }
+    ];
 }
