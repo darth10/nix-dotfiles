@@ -20,7 +20,7 @@
       activation.installDoomEmacs = inputs.home-manager.lib.hm.dag.entryAfter ["writeBoundary"] ''
         if [[ ! -d ${emacsConfigDir} ]]; then
           run echo "Cloning Doom Emacs into ${emacsConfigDir}"
-          run --quiet ${pkgs.git}/bin/git clone https://github.com/doomemacs/doomemacs.git ${emacsConfigDir}
+          run --quiet ${pkgs.git}/bin/git clone https://github.com/doomemacs/core.git ${emacsConfigDir}
           [[ $OSTYPE == 'darwin'* ]] && run --quiet ln -s ${config.xdg.dataHome}/doom ${emacsConfigDir}/.local
         fi
       '';
