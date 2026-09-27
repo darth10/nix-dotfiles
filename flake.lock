@@ -182,7 +182,8 @@
         "import-tree": "import-tree",
         "nix-index-database": "nix-index-database",
         "nixos-hardware": "nixos-hardware",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_2",
+        "zinit": "zinit"
       }
     },
     "systems": {
@@ -215,6 +216,22 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "zinit": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1790411322,
+        "narHash": "sha256-AeuqvAcPPbdzUvQ/XwgOm21Xgf3pDXszGuV7tvCFFAY=",
+        "owner": "zdharma-continuum",
+        "repo": "zinit",
+        "rev": "c182cc5d0d72c960ab8320d48723e9169a46f1f2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "zdharma-continuum",
+        "repo": "zinit",
         "type": "github"
       }
     }

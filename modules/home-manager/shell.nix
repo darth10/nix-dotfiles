@@ -1,4 +1,8 @@
-{self, ...}: {
+{
+  self,
+  inputs,
+  ...
+}: {
   flake.modules.homeManager.shell = {
     pkgs,
     config,
@@ -48,10 +52,9 @@
               FPATH="$(brew --prefix)/share/zsh/site-functions:''${FPATH}"
           fi
 
-          ZINIT_HOME="${config.xdg.dataHome}/zinit/zinit.git"
-          [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
-          [ ! -d $ZINIT_HOME/.git ] && ${pkgs.git}/bin/git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-          source "''${ZINIT_HOME}/zinit.zsh"
+          declare -A ZINIT
+          ZINIT[HOME_DIR]="${config.xdg.dataHome}/zinit"
+          source ${inputs.zinit}/zinit.zsh
 
           zi snippet OMZP::sudo
           zi snippet OMZP::aws

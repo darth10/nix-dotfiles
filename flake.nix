@@ -21,6 +21,11 @@
       url = "github:serokell/deploy-rs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    zinit = {
+      url = "github:zdharma-continuum/zinit";
+      flake = false;
+    };
   };
 
   outputs = inputs:
