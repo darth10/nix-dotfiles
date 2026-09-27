@@ -19,7 +19,7 @@
       extraOptions = "experimental-features = nix-command flakes";
     };
     ```
-- Clone the repository and run `scripts/install`:
+- Clone the repository and run the `install.sh` script:
   ```sh
   nix shell nixpkgs#git --extra-experimental-features 'nix-command flakes'
   git clone --recursive git@github.com:darth10/nix-dotfiles.git ~/.nix-dotfiles
