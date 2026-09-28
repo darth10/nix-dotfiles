@@ -3,6 +3,7 @@
 # Add -x flag to debug
 set -euo pipefail
 
+git submodule update --init --recursive
 nix run github:nix-community/home-manager -- -b backup switch \
     --flake ".#$USER"
 
