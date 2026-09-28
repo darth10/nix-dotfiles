@@ -1,29 +1,21 @@
-{
-  self,
-  inputs,
-  ...
-}: {
+{self, ...}: {
   flake.modules.homeManager.emacs = {
     config,
     pkgs,
     ...
   }: {
     home = let
-      homeModulesDir = (self.settings.getDirs pkgs).homeModules;
+      dotfilesDir = (self.settings.getDirs pkgs).dotfiles;
+      doomDir = "${dotfilesDir}/doom.d";
+      emacsDir = "${dotfilesDir}/emacs.d";
       configDir = config.xdg.configHome;
-      emacsConfigDir = "${configDir}/emacs";
+      doomLocalDir = "${config.xdg.dataHome}/doom";
     in {
       file = {
-        "${configDir}/doom".source = config.lib.file.mkOutOfStoreSymlink "${homeModulesDir}/doom";
+        "${configDir}/doom".source = config.lib.file.mkOutOfStoreSymlink doomDir;
+        "${configDir}/emacs".source = config.lib.file.mkOutOfStoreSymlink emacsDir;
+        "${emacsDir}/.local".source = config.lib.file.mkOutOfStoreSymlink doomLocalDir;
       };
-
-      activation.installDoomEmacs = inputs.home-manager.lib.hm.dag.entryAfter ["writeBoundary"] ''
-        if [[ ! -d ${emacsConfigDir} ]]; then
-          run echo "Cloning Doom Emacs into ${emacsConfigDir}"
-          run --quiet ${pkgs.git}/bin/git clone https://github.com/doomemacs/core.git ${emacsConfigDir}
-          [[ $OSTYPE == 'darwin'* ]] && run --quiet ln -s ${config.xdg.dataHome}/doom ${emacsConfigDir}/.local
-        fi
-      '';
 
       packages = with pkgs; [
         aspell
@@ -38,7 +30,7 @@
       sessionVariables = {
         DOOMDIR = "${configDir}/doom";
         EMACSDIR = "${configDir}/emacs";
-        DOOMLOCALDIR = "${config.xdg.dataHome}/doom";
+        DOOMLOCALDIR = doomLocalDir;
         GRIPHOME = "${config.xdg.cacheHome}/grip";
 
         EDITOR = "e";

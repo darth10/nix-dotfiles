@@ -1,3 +1,8 @@
-[submodule "modules/doom"]
-	path = modules/home-manager/doom
+[submodule "doom.d"]
+	path = doom.d
 	url = git@github.com:darth10/doom.d.git
+	branch = master
+[submodule "emacs.d"]
+	path = emacs.d
+	url = git@github.com:doomemacs/core.git
+	branch = master
