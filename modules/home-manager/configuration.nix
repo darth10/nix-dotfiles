@@ -22,6 +22,7 @@ in {
         self.modules.homeManager.clojure
         self.modules.homeManager.gnome
         self.modules.homeManager.kitty
+        self.modules.homeManager.lsp
         self.modules.homeManager.npm
         self.modules.homeManager.pass
         self.modules.homeManager.pcloud
