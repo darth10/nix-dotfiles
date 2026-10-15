@@ -32,10 +32,6 @@
           pass-audit
         ]))
       pass
-
-      # LSP servers
-      bash-language-server
-      nil
     ];
   };
 }
