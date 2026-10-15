@@ -31,6 +31,7 @@
       fontconfig
       nerd-fonts.fira-code
       noto-fonts-color-emoji
+      symbola
       vista-fonts
       consolas-ligaturized
     ];
