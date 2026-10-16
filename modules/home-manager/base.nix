@@ -3,6 +3,7 @@
     xdg.enable = true;
 
     programs.home-manager.enable = true;
+    manual.manpages.enable = false;
 
     home = {
       username = self.settings.username;
