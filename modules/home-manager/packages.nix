@@ -22,7 +22,7 @@
 
         alejandra
       ]
-      ++ optionals pkgs.stdenv.isLinux []
-      ++ optionals pkgs.stdenv.isDarwin [];
+      ++ optionals pkgs.stdenv.hostPlatform.isLinux []
+      ++ optionals pkgs.stdenv.hostPlatform.isDarwin [];
   };
 }
