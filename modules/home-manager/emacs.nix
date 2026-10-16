@@ -21,6 +21,8 @@
         aspell
         aspellDicts.en
         python312Packages.grip
+        shellcheck
+        html-tidy
 
         nerd-fonts.fira-code
         noto-fonts-color-emoji
