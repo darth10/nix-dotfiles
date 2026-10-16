@@ -16,7 +16,7 @@
 
   config.flake.settings.getDirs = pkgs: rec {
     home =
-      if pkgs.stdenv.isDarwin
+      if pkgs.stdenv.hostPlatform.isDarwin
       then "/Users/${self.settings.username}"
       else "/home/${self.settings.username}";
     dotfiles = "${home}/.nix-dotfiles";
