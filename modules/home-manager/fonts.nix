@@ -1,10 +1,10 @@
 {...}: {
-  flake.modules.homeManager.fonts = {
+  perSystem = {
     pkgs,
     lib,
     ...
-  }: let
-    consolas-ligaturized = pkgs.stdenvNoCC.mkDerivation {
+  }: {
+    packages.consolas-ligaturized = pkgs.stdenvNoCC.mkDerivation {
       pname = "consolas-ligaturized";
       version = "3";
 
@@ -26,16 +26,10 @@
         platforms = lib.platforms.all;
       };
     };
-  in {
-    home.packages = with pkgs; [
-      fontconfig
-      nerd-fonts.fira-code
-      noto-fonts-color-emoji
-      symbola
-      vista-fonts
-      consolas-ligaturized
-    ];
+  };
 
+  flake.modules.homeManager.fonts = {pkgs, ...}: {
+    home.packages = [pkgs.fontconfig];
     fonts.fontconfig.enable = true;
   };
 }

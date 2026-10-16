@@ -21,6 +21,12 @@
         aspell
         aspellDicts.en
         python312Packages.grip
+
+        nerd-fonts.fira-code
+        noto-fonts-color-emoji
+        symbola
+        vista-fonts
+        self.packages.${pkgs.stdenv.hostPlatform.system}.consolas-ligaturized
       ];
 
       shellAliases.e = "emacsclient -t -a=";
