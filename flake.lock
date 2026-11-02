@@ -222,11 +222,11 @@
     "zinit": {
       "flake": false,
       "locked": {
-        "lastModified": 1792068255,
-        "narHash": "sha256-sUIsatUsw56ooWihAHeh4F0H817dX38AjdxnjazzWOs=",
+        "lastModified": 1793107552,
+        "narHash": "sha256-0E3m2xfJabnOTSWTxSqs3avPqTidxEnslJQ6JYp26Dw=",
         "owner": "zdharma-continuum",
         "repo": "zinit",
-        "rev": "f466c8805d8890f76bed8cf0972e0f7310fc5fc9",
+        "rev": "cb4968123979cf073384e93aa8066d8fd450580f",
         "type": "github"
       },
       "original": {
